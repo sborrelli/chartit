@@ -1,0 +1,231 @@
+.rss-box
+{
+	margin: 5px;
+	width: 280px;
+	padding: 10px;
+	border: none;
+}
+
+.rss-title
+{
+   background: #d9e1e8;
+   color: #000099;
+   font-family: Arial, Helvetica, sans-serif; 
+   font-size:12px;
+
+}
+
+.rss-title a
+{
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 16px;
+	font-weight:bold;
+	background-color: transparent; 
+}
+
+.rss-title a:link {text-decoration: none}
+.rss-title a:visited {text-decoration: none}
+.rss-title a:active {text-decoration: none}
+.rss-title a:hover {text-decoration: underline overline; color: red;}
+
+.rss-items
+{
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	
+}
+.rss-date{color: #003366; background: #ffffff; font-size: 9px;}
+
+.rss-item
+{
+	list-style-type: disc;
+}
+.rss-item a:link {text-decoration: none;}
+.rss-item a:visited {text-decoration: none;}
+.rss-item a:active {text-decoration: none;}
+.rss-item a:hover {text-decoration: underline overline; color: red;}
+
+
+/*-------------------------------------------------------------------------------------------------------*/
+
+.rss-box-round
+{
+	margin: 5px;		
+	width: 300px;		
+	height: 345px;					
+	background: #e1d1b3;					
+	background-image: url(../images/boxes/600/e1d1b3_b.jpg);
+	background-repeat:no-repeat;
+	background-position:bottom;
+	font-family: arial;
+}
+
+.rss-box-round .rss-title
+{			
+	color: #000000;	
+	background: #e1d1b3;
+	padding-top: 10px;
+	padding-left: 15px;
+	padding-bottom: 4px;
+	background-image: url(../images/boxes/600/e1d1b3_t.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+	background-color: RGB(226,209,183);
+}
+
+.rss-box-round .rss-title .rss-item{position: relative; left: 15px;}
+.rss-box-round .rss-title a:hover{text-decoration: underline overline; color: #db001d;}
+
+.rss-box-round .rss-title a:link, .rss-box-round .rss-title a:visited, .rss-box-round .rss-title a:active
+{
+	text-decoration: none;
+	color: #2b3034;							
+}
+
+.rss-box-round .rss-date
+{
+	position: relative;
+	color: #003768;
+	background: #e1d1b3;
+}
+
+.rss-box-round .rss-items
+{
+    background: #e1d1b3;
+	font-size: x-small;
+	font-family: Arial, Helvetica, sans-serif;	
+}	
+
+.rss-box-round .rss-item a:link,.rss-box-round .rss-item a:visited,.rss-box-round .rss-item a:active {text-decoration: none; color: blue;}
+.rss-box-round .rss-item a:hover {text-decoration: underline overline; color: #a05804;}
+
+/*------------------------------------------------------------------------------------------------*/
+
+
+.rss-box-richard
+{
+	margin: 5px;
+	padding: 10px;
+	border-style:inset;
+	width: 280px;
+	background-color: #8ca5bb;
+}
+
+.rss-box-richard .rss-title
+{
+	background: transparent;
+	color: #2b3034;
+	position: relative;
+	left: 12px;
+}
+.rss-box-richard .rss-title .rss-item{position: relative; left: 12px;}
+.rss-box-richard .rss-title a:link {text-decoration: none}
+.rss-box-richard .rss-title a:visited {text-decoration: none}
+.rss-box-richard .rss-title a:active {text-decoration: none}
+.rss-box-richard .rss-title a:hover {text-decoration: none; color: #db001d;}
+
+.rss-box-richard .rss-date{color: #003768; background-color: #8ca5bb;}
+
+.rss-box-richard .rss-items
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	list-style-type:decimal;
+	color: #2b3034;
+}
+
+.rss-box-richard .rss-item a:link,.rss-box-richard .rss-item a:visited {text-decoration:none;}
+.rss-box-richard .rss-item a:visited {color:#0000FF;}
+.rss-box-richard .rss-item a:hover {text-decoration:underline; color: #a05804;}
+/*-------------------------------------------------------------------------------------------------------------------------------*/
+
+.rss-box-CSS
+{
+	margin: 5px;
+	width: 300px;
+	background-color: #e7e9ea;
+	border-style: inset;
+}
+
+.rss-box-CSS .rss-title
+{
+	background-color: #8cb4b3;
+	color: #2b3034;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 16px;
+}
+
+.rss-box-CSS .rss-title .rss-item {position: relative; left: 16px;}
+.rss-box-CSS .rss-title a:link {text-decoration: none;}
+.rss-box-CSS .rss-title a:visited {text-decoration: none}
+.rss-box-CSS .rss-title a:active {text-decoration: none}
+.rss-box-CSS .rss-title a:hover {text-decoration: none; color: #db001d;}
+
+.rss-box-CSS .rss-date{color: #db001d; background-color: #e7e9ea;}
+
+.rss-box-CSS .rss-items
+{
+	padding-left: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	list-style-type: lower-alphadecimal;
+	color: #2b3034;
+}
+
+.rss-box-CSS .rss-item a:link,.rss-box-richard .rss-item a:visited {text-decoration:none;}
+.rss-box-CSS .rss-item{padding-bottom: 10px;}
+.rss-box-CSS .rss-item a:visited {color:#0000FF;}
+.rss-box-CSS .rss-item a:hover {text-decoration:underline;  color: #a05804;}
+
+/*-------------------------------------------------------------------------------------------------------------------------------*/
+.rss-box-Test
+{
+	margin: 5px;
+	border-style:none;
+	width: 300px;
+	height: 345px;
+	background-color: #e7e9ea;
+	background-image:url(../images/boxes/600/990033_b.jpg);
+	background-repeat:no-repeat;
+	background-position:bottom;
+}
+
+.rss-box-Test .rss-title
+{
+	color: #408381;
+	padding-top: 5px;
+	padding-left: 20px;
+	padding-bottom: 4px;
+	background-image: url(../images/boxes/600/990033_t.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+	background-color: RGB(153,1,52);
+}
+
+.rss-box-Test .rss-title .rss-item {position: relative; left: 20px;}
+.rss-box-Test .rss-title a:link {text-decoration: none;}
+.rss-box-Test .rss-title a:visited {text-decoration: none}
+.rss-box-Test .rss-title a:active {text-decoration: none}
+.rss-box-Test .rss-title a:hover {text-decoration: none; color: #db001d;}
+
+.rss-box-Test .rss-date{color: #db001d; background-color: #e7e9ea;}
+
+.rss-box-Test .rss-items
+{
+	padding-left: 15px;
+	border: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	list-style-type:none;
+	color: #2b3034;
+	padding-bottom: 50px;
+}
+
+.rss-box-Test .rss-item a:link,.rss-box-richard .rss-item a:visited {text-decoration:none;}
+.rss-box-Test .rss-item{padding-bottom: 10px;}
+.rss-box-Test .rss-item a:visited {color:#0000FF;}
+.rss-box-Test .rss-item a:hover {text-decoration:underline;  color: #a05804;}
+
+/*---------------------------------------------------------------------------------------------------------*/

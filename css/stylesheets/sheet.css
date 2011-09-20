@@ -1,0 +1,244 @@
+/* Indicating to users that more info is available 
+
+abbr,acronym {
+	border-bottom:1px dotted #000 !important;
+	cursor:help;
+}
+
+a abbr {
+	border-bottom: none!important;
+	cursor: pointer;
+}*/
+
+/* Links */
+
+a:link, a:visited, a:active {
+	text-decoration: none;
+}
+
+#nav a:hover, #toolbar a:hover {
+	text-decoration: underline;
+}
+
+#scheduling .yui-cssreset #buttonsfrommarkup a:link, #scheduling .yui-cssreset #buttonsfrommarkup a:visited, #course .yui-cssreset #info a:link, #course .yui-cssreset #info a:focus, #course #info .yui-cssreset a:hover  {
+	color: #000;
+	text-decoration: none !important;
+}
+
+#scheduling .yui-cssreset #info .selected a:link, #course .yui-cssreset #info .selected a:link, #course .yui-cssreset #info .selected a:focus, #course .yui-cssreset #info .selected a:hover  {
+	color: #fff;
+	text-decoration: none;
+}
+
+#main .yui-button a:link, #main .yui-button a:visited {
+	color:#000!important;
+	text-decoration:none!important;
+}
+
+#home #favorites {
+	border-top: 1px solid rgb(229, 229, 229);
+	border-right: 1px solid rgb(229, 229, 229);
+	border-left: 1px solid rgb(229, 229, 229);
+	padding: 0;
+	float:right;
+	width: 270px;
+	margin: 0 0 10px 15px;
+}
+
+#home #favorites li {
+	background: url(http://www.checkoutapp.com/media/img/misc/top_white_line.jpg) repeat-x rgb(248, 248, 248);
+	border-bottom: 1px solid rgb(229, 229, 229);
+	color: rgb(44, 43, 43);
+	margin: 0;
+}
+
+#home #favorites a {
+	display: block;
+	padding: 10px 0 10px 35px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	text-decoration: none;
+	border-top: 1px solid #fff;
+}
+
+#home .notice a {
+	background: url(../images/ui-tab-content.png) no-repeat left center;
+	padding-left: 30px;
+}
+
+#schedule a {
+	background-image: url(../images/calendar-select.png);
+}
+
+#accordion a {
+	background-image: url(../images/ui-accordion.png);
+}
+
+#gened a {
+	background-image: url(../images/block.png);
+}
+
+#tutorials a {
+	background-image: url(../images/slide.png);
+}
+
+#handouts a {
+	background-image: url(../images/document-text.png);
+}
+
+#form a {
+	background-image: url(../images/thumb-up.png);
+}
+
+#ile a {
+	background-image: url(../images/application-browser.png);
+}
+
+#commercial a {
+	background-image: url(../images/clapperboard.png);
+}
+
+
+/* Headings */
+
+#scheduling .yui-cssreset h3, #course .yui-cssreset h3 {
+	font-size: 174%;
+	font-weight: bold;
+}
+
+#scheduling .yui-cssreset h4, #course .yui-cssreset h4 {
+	line-height: 1.5em;
+	font-weight: bold;
+	margin-top: 1em;
+}
+
+#scheduling .yui-cssreset h5, #course .yui-cssreset h5 {
+	margin-top: 2.5em;
+}
+
+#scheduling .yui-cssreset p, #course .yui-cssreset p  {
+	line-height: 1.5em;
+}
+
+/* Banners */
+
+#course .yui-cssreset .notice, #scheduling .yui-cssreset .notice{
+	padding: 1em;
+	border-top: 1px solid #d1c6eb;
+	border-bottom: 1px solid #d1c6eb;
+	margin: 20px 0;
+	background-color: #e0d7f4;
+}
+
+#course .yui-cssreset .warning, #scheduling .yui-cssreset .warning {
+	padding: 10px;
+	background-color: #ffc;
+	margin: 10px 0;
+	border-bottom: 1px dotted #ccc;
+	border-top: 1px dotted #ccc;
+}
+
+#course .yui-cssreset .warning em {
+	font-style: italic;
+}
+
+#scheduling p strong {
+	font-weight:bold;
+}
+
+#course .yui-cssreset fieldset {
+	margin-bottom: 3em;
+}
+
+#course .yui-cssreset label {
+	display: block;
+	font-weight: bold;
+	line-height: 2em;
+	margin-top: 1.3em;
+}
+
+.optional span {
+	color: #F80;
+	font-weight: normal;
+
+}
+
+#course .yui-cssreset input, #course .yui-cssreset textarea, #course .yui-cssreset select {
+	padding: .5em !important;
+}
+
+#buttonsfrommarkup {
+	margin: 1em 0;
+}
+
+#scheduling #self {
+	margin-top:2em;
+}
+
+#scheduling .yui-cssreset ul {
+	padding-left:3em;
+	line-height: 1.5em;
+}
+
+#scheduling .yui-cssreset li {
+	list-style: disc inside;
+}
+
+#scheduling .yui-cssreset li li {
+	list-style: circle inside;
+}
+
+#scheduling .yui-cssreset .sub {
+	list-style: none;
+}
+
+#course .yui-cssreset #info .yui-content {
+	padding: 0;
+}
+
+#tab1, #tab2, #tab3, #tab4, #tab5 {
+	padding: 1em;
+}
+/*
+#tab1 {
+	background: #fff url(../images/feeds.gif) no-repeat bottom right;
+}
+*/
+a.rss-title {
+	font-size: 116%;
+	font-weight: bold;
+}
+
+#home #info #tab1 ul.rss-items {
+	font-size: 85%;
+	line-height: 1.7em;
+}
+
+#home #info #tab1 li.rss-item {
+}
+
+a.rss-item {
+	font-size: 116%;
+	font-weight: bold;
+}
+
+/* Yahoo! UI Library: TabView */
+
+#info {
+	margin: 1em 0 1.5em 0;
+}
+
+#course.yui-skin-sam .yui-navset ul.yui-nav,
+#course .yui-skin-sam .yui-navset .yui-navset-top ul.yui-nav {
+	padding: 0;
+}
+
+#course.yui-skin-sam .yui-navset .yui-nav li,
+#course .yui-skin-sam .yui-navset .yui-navset-top .yui-nav li {
+    margin:0 0.16em 0 0;
+}
+
+#course #info .yui-content li {
+	margin-top: 1em;
+	list-style: disc outside;
+}
