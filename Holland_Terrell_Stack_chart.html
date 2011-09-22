@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"> 
   <!--[if lt IE 8]>
     <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
-  <![endif]-->
-<link href="css/stylesheets/style.css" rel="stylesheet" type="text/css" />  
+  <![endif]-->  
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<link href="css/stylesheets/style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript"><!--
         function Return () {
     
@@ -42,13 +42,16 @@
 <td width="200" bgcolor=#990033 style="text-align: center;"><input type=Button NAME='HTLMap' Value='Holland Terrell Library Map' onclick="window.open('http://libguides.wsulibs.wsu.edu/data/files3/89253/FLOOR%20MAP.doc');" /></td>
 </tr></table>
 
-<div id="mainDiv" style="width: 100%">
-	<div class="span-12">
+<div id="mainDiv" >
+	
+	
+	<div class="span-12" >
 		<h2 align="center" class="" >Terrell Library </h2>
 		<div id="terrelDiv">
-		<h3><a href="#">1st Floor, Terrell - Call Numbers: A - DC</a></h3>
+		<h3><a href="#" id="terrell_1st_hd">1st Floor<br>Call Numbers: A - DC</a></h3>
 		<div>
-			<table border="1" cellspacing="0" cellpadding="2">
+			<table border="1" cellspacing="0" cellpadding="2" class="">
+				<tbody id="terrell_1st">
 				    <tr>
 	                  <td width="68"><b>Stack #</b></td>
 	                  <td width="152"><b>Begins with:</b></td>
@@ -438,11 +441,13 @@
 	                  </td>
 	                  <td>DC 9999 Z9 </td>
 	                </tr>
+	                </tbody>
 	              </table>
 		</div>
-		<h3><a href="#">Ground Floor, Terrell - Call Numbers: DD - HB 149 Z9</a></h3>	
+		<h3><a href="#" id="terrell_gnd_hd">Ground Floor<br>Call Numbers: DD - HB 149 Z9</a></h3>	
 		<div>
 			<table border="1" cellspacing="0" cellpadding="2">
+				<tbody id="terrell_gnd">
 	                <tr>
 	                  <td width="66"><b>Stack #</b></td>
 					  <td width="138"><b>Begins with:</b></td>
@@ -1072,11 +1077,13 @@
 	                    <td>to</td>
 	                    <td>HB 149 Z9</td>
 	                  </tr>
+	                  </tbody>
 				  </table>	
 		</div>		
-		<h3><a href="#">Basement, Terrell - Call Numbers: HB 150 - HV 5999</a></h3>
+		<h3><a href="#" id="terrell_bas_hd">Basement<br>Call Numbers: HB 150 - HV 5999</a></h3>
 		<div>
 			<table border="1" cellspacing="0" cellpadding="2">
+				<tbody id="terrell_bas">
 	                  <tr>
 	                    <td width="72">
 	                    <b>Stack #</b></td>
@@ -1773,9 +1780,10 @@
 	                    <td width="140">
 	                      HV 5999 Z9</td>
 	                  </tr>
+	              </tbody>    
 	          </table>
 		</div>
-		<h3><a href="#">Basement, Terrell - Dewey Call Numbers: 001-999</a></h3>
+		<h3><a href="#" id="terrell_bas_hd">Basement<br>Dewey Call Numbers: 001-999</a></h3>
 		<div>
 			<table border="1" cellspacing="0" cellpadding="2">
 	            <tr>
@@ -2446,9 +2454,10 @@
 	<div class="span-12 last">
 		<h2 align="center">Holland Library </h2>
 		<div id="hollandDiv">
-			<h3><a href="#">1st Floor, Holland - Call Numbers: HV 6000 - KZ</a></h3>
+			<h3><a href="#" id="holland_1st_hd">1st Floor<br>Call Numbers: HV 6000 - KZ</a></h3>
 			<div>
 				<table border=1 cellspacing=0 cellpadding=2>
+					<tbody id="holland_1st" class="stackchart">
 				  <tr>
 					<td width="66" valign="top"><strong> Stack# </strong></td>
 					<td width="121" valign="top"><strong> Begins with: </strong></td>
@@ -2653,11 +2662,13 @@
 					<td width="20" valign="top"> to </td>
 					<td width="139" valign="top"> KZZ Z9 </td>
 				  </tr>
+				  </tbody>
 			  </table>
 			</div>
-			<h3><a href="#">2nd Floor - Call Numbers: L - PS 3299 </a></h3>
+			<h3><a href="#" id="holland_2nd_hd">2nd Floor<br>Call Numbers: L - PS 3299 </a></h3>
 			<div>
 				<table border=1 cellspacing=0 cellpadding=2>
+					<tbody id="holland_2nd">
 				  <tr>
 					<td width="66" height="20" valign="top"><strong> Stack# </strong></td>
 					<td width="121" height="20" valign="top"><strong> Begins with: </strong></td>
@@ -3228,11 +3239,13 @@
 					<td width="23" height="20" valign="top"> to </td>
 					<td width="139" height="20" valign="top"> PS 3292 R4 H3 1973 </td>
 				  </tr>
+				  </tbody>
 				</table>
 			</div>
-			<h3><a href="#">3rd Floor - Call Numbers: PS 3302- Z </a></h3>
+			<h3><a href="#" id="holland_3rd_hd">3rd Floor<br>Call Numbers: PS 3302- Z </a></h3>
 			<div>
 				<table border="1" cellspacing="0" cellpadding=2>
+					<tbody id="holland_3rd">
 				    <tr>
 				      <td width="55" valign="top"><strong> Stack# </strong></td>
 				      <td width="132" valign="top"><strong> Begins with: </strong></td>
@@ -3497,9 +3510,10 @@
 				      <td width="20" valign="top"> to </td>
 				      <td width="133" valign="top"> ZZ 9999 Z9 </td>
 				    </tr>
+				    </tbody>
 			    </table>
 			</div>
-			<h3><a href="#">Third Floor - Jackson Documents (Non-U.S. Documents) </a></h3>
+			<h3><a href="#" id="holland_3rd_hd">3rd Floor<br>Jackson Documents (Non-U.S. Documents) </a></h3>
 			<div>
 				<table border="1" cellspacing="0" cellpadding=2>
 			        <tr>
@@ -3559,7 +3573,7 @@
 			        </tr>
 			      </table>
 			</div>
-			<h3><a href="#">3rd Floor - U.S. Documents</a></h3>
+			<h3><a href="#" id="holland_3rd_hd">3rd Floor<br>U.S. Documents</a></h3>
 			<div>
 				<table border="1" cellspacing="0" cellpadding=2>
 			        <tr>
@@ -3720,63 +3734,58 @@
 			        </tr>
 			      </table>
 			</div>
-			<h3><a href="#">Call Number Map</a></h3>
+			<h3><a href="#">Holland &amp; Terrell Call Number Map</a></h3>
 			<div>
 				<div align="center">
 					<table border="1" cellpadding=2 cellspacing="0">
+						<tbody class="call_map">					  
 					  <tr>
-						<td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
-					  </tr>
-					  <tr>
-						<td width="280">HV 6000 - KZZ</td>
-						<td width="143">1st Floor </td>
-					  </tr>
-					  <tr>
-						<td>L - PS 3299 </td>
-						<td>2nd Floor </td>
-					  </tr>
-					  <tr>
-						<td>PS 3302 - Z</td>
-						<td>3rd Floor </td>
-					  </tr>
-					  <tr>
-						<td>Jackson (State/Int'l) Docs MA-YO </td>
-						<td>3rd Floor </td>
-					  </tr>
-					  <tr>
-						<td>US Docs A - Y </td>
-						<td>3rd Floor </td>
-					  </tr>
-					  <tr>
-						<td>Oversize</td>
-						<td>3rd Floor </td>
-					  </tr>
-					</table>
-	    		</div>
-		   
-			    <div align="center">
-					<table border="1" cellpadding=2 cellspacing="0">
-					  <tr>
-						<td colspan="2"><div align="center"><strong>Terrell Library</strong></div></td>
-					  </tr>
-					  <tr>
-						<td width="267">A - DC 9999 Z9 </td>
-						<td width="145">1st Floor </td>
+						<td width="267">A - DC </td>
+						<td width="145">Terrel 1st</td>
 					  </tr>
 					  <tr>
 						<td>DD - HB 149 Z9 </td>
-						<td>Ground Floor </td>
+						<td>Terrel Ground</td>
 					  </tr>
 					  <tr>
-						<td>Hb 150- HV 5999 </td>
-						<td>Basement</td>
+						<td>HB 150- HV 5999 </td>
+						<td>Terrel Basement</td>
 					  </tr>
+					  <!-- 
 					  <tr valign="top">
 						<td>001-999 (DEWEY) </td>
 						<td>Basement, Compact Storage </td>
 					  </tr>
-					</table>					
-			    </div>
+					  -->
+					  <tr>
+						<td width="280">HV 6000 - KZZ</td>
+						<td width="143">Holland First</td>
+					  </tr>
+					  <tr>
+						<td>L - PS 3299 </td>
+						<td>Holland Second</td>
+					  </tr>
+					  <tr>
+						<td>PS 3300 - Z</td>
+						<td>Holland Third</td>
+					  </tr>
+					  <tr>
+						<td>Jackson Docs </td>
+						<td>Holland Third</td>
+					  </tr>
+					  <tr>
+						<td>US Docs A - Y </td>
+						<td>Holland Third</td>
+					  </tr>
+					  <!--
+					  <tr>
+						<td>Oversize</td>
+						<td>3rd Floor </td>
+					  </tr>
+					  -->
+					  </tbody>
+					</table>
+	    		</div>		    
 			</div>
 			<h3><a href="#"> Other Locations in The Library</a></h3>
 			<div>
@@ -3827,14 +3836,65 @@
 		      </table>
 			</div>
 		</div>
-	</div>	
+	</div>
+	
+	<!-- 
+	<div class"span-6 last">
+		<h2 align="center">Call Number Map</h2>
+		<div>
+			<table border="1">
+				<tr>
+					<td>Hey</td>
+				</tr>
+			</table>		
+		</div>
+		<div id="callMapDiv">
+			<table>
+				<tbody class="call_map">					  
+					  <tr>
+						<td >A - DC </td>
+						<td >Terrel 1st</td>
+					  </tr>
+					  <tr>
+						<td>DD - HB 149 Z9 </td>
+						<td>Terrel Ground</td>
+					  </tr>
+					  <tr>
+						<td>HB 150- HV 5999 </td>
+						<td>Terrel Basement</td>
+					  </tr>					 
+					  <tr>
+						<td >HV 6000 - KZZ</td>
+						<td >Holland First</td>
+					  </tr>
+					  <tr>
+						<td>L - PS 3299 </td>
+						<td>Holland Second</td>
+					  </tr>
+					  <tr>
+						<td>PS 3300 - Z</td>
+						<td>Holland Third</td>
+					  </tr>
+					  <tr>
+						<td>Jackson Docs </td>
+						<td>Holland Third</td>
+					  </tr>
+					  <tr>
+						<td>US Docs A - Y </td>
+						<td>Holland Third</td>
+					  </tr>					  
+				</tbody>
+			</table>
+		</div>
+	</div>
+	-->	
 	
 
 </div>
 
 <div style="clear: both"></div>
 
-<h4 align="center">WSU Libraries &nbsp;<input type=BUTTON NAME=BtnName VALUE='RETURN' onClick='Return()'></h4>
+<h3 align="center">WSU Libraries &nbsp;<input type=BUTTON NAME=BtnName VALUE='RETURN' onClick='Return()'></h4>
 <div id=lifoot>
 <center>
 <script type="text/javascript" src="http://www.wsulibs.wsu.edu/electric/library_lingo/javascripts/footers/Footer.js"></script>
