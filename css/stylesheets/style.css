@@ -3,10 +3,10 @@ This stylesheet is for the stack chart
 ********************************************************************/
 
 html {margin: 0; padding: 0;}
-body {margin: 0; padding: 0; font-family: times, Times New Roman, times-roman, georgia, serif; font-size: 80%;
+body {margin: 0; padding: 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 80%;
            background: #eee repeat-y url(images/browncol.gif);}
             /*** Image is 180px wide, and 20px high ***/
-pre {margin: 0; font-family: times, serif; font-size: .9em;}
+pre {margin: 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: .9em;}
 
 a:
 {
@@ -31,9 +31,9 @@ a:visited
 *******************************************************************************/
 h1 {
 margin: 0;
-border-top: 4px solid #000;
-background-color: #990033;    /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
-border-bottom: 5px solid #000;
+/*border-top: 4px solid #000;*/
+/*background-color: #990033; */   /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
+border-bottom: 3px double #000;
 }
 h2, h4 {
 font-size: 30px;
@@ -47,7 +47,7 @@ border-bottom: 3px double #000;
 h3 {
 color:white;
 font-size: 30px;
-background-color: #990033;    /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
+/*background-color: #990033;  */  /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
 margin: 0;
 }
 
@@ -73,8 +73,8 @@ tbody#terrell_bas tr:nth-child(even) td, tbody tr.even td {background:#DEE48D;}
 tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 
 /* overriding jquery ui css */
-.ui-widget { font-family: times, Times New Roman, times-roman, georgia, serif; font-size: 1.1em; }
-.ui-accordion-header {font-size: 1.4em; color:#ffffff}
+/*.ui-widget { font-family: times, Times New Roman, times-roman, georgia, serif; font-size: 1.1em; }*/
+.ui-accordion-header {font-size: 1.2em; color:#ffffff}
 #holland_1st_hd {background-color: #5E6B72; color: #FFFFFF}
 #holland_2nd_hd {background-color: #255981; color: #FFFFFF}
 #holland_3rd_hd {background-color: #981D32; color: #FFFFFF}
