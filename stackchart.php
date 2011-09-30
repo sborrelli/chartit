@@ -56,7 +56,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 </tr></table>
 -->
 <?
-if(!($db=sqlite_open('db/stackchart.sqlite', '0666')))
+if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 	{
 		echo "<h2> Database Error </h2>";
 		die();
@@ -72,7 +72,7 @@ if(!($db=sqlite_open('db/stackchart.sqlite', '0666')))
 			<div>
 				<div align="center">
 					<table border="1" cellpadding=2 cellspacing="0">
-						<tbody class="call_map">					  
+						<tbody class="call_map">					 					  
 					  <tr>
 						<td width="267">A - DC </td>
 						<td width="145">Terrel 1st</td>
@@ -131,6 +131,26 @@ if(!($db=sqlite_open('db/stackchart.sqlite', '0666')))
 		                  <td width="20">&nbsp;</td>
 		                  <td width="149"><b>Ends with:</b> </td>
 				        </tr>
+				         <?
+					  $result = $db->query('SELECT * FROM Stacks where floor_id = 1');
+					  foreach($result as $row){					  	
+						print "<tr><td>";
+						$url = $row['number_url'];
+						if ( strlen($url) > 0 ){							
+							print "<a href='$url'>";
+						}
+						print $row['number'];
+						if ( strlen($url) > 0 ){							
+							print "</a>";
+						}
+						print "</td>";
+						print "<td>".$row['begins_with']."</td>";
+						print "<td width=\"20\">to</td>";						
+						print "<td>".$row['ends_with']."</td></tr>";
+					}
+					  
+					  ?>
+				        <!--
 		                <tr>
 		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A101.html"><strong>101</strong></a></div></td>
 		                  <td>A 1 A1</td>
@@ -514,6 +534,7 @@ if(!($db=sqlite_open('db/stackchart.sqlite', '0666')))
 		                  </td>
 		                  <td>DC 9999 Z9 </td>
 		                </tr>
+		               -->
 		                </tbody>
 		              </table>
 			</div>
