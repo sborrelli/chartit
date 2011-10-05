@@ -134,7 +134,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 				         <?
 					  $result = $db->query('SELECT * FROM Stacks where floor_id = 1');
 					  foreach($result as $row){					  	
-						print "<tr><td>";
+						print "<tr><td><div align=\"center\">";
 						$url = $row['number_url'];
 						if ( strlen($url) > 0 ){							
 							print "<a href='$url'>";
@@ -143,398 +143,12 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 						if ( strlen($url) > 0 ){							
 							print "</a>";
 						}
-						print "</td>";
+						print "</div></td>";
 						print "<td>".$row['begins_with']."</td>";
 						print "<td width=\"20\">to</td>";						
 						print "<td>".$row['ends_with']."</td></tr>";
-					}
-					  
-					  ?>
-				        <!--
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A101.html"><strong>101</strong></a></div></td>
-		                  <td>A 1 A1</td>
-		                  <td width="20">to</td>
-		                  <td>AE 25 D9</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A102-103.html"><strong>102</strong></a></div></td>
-		                  <td>AE 25 E1</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AI 3 R48 v.42</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103.html"><strong>103</strong></a></div></td>
-		                  <td>AI 3 R48 v.43</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 1 S9 v.69</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>104</strong></a></div></td>
-		                  <td>AP 1 S9 v.70</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 2 E8451</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>105</strong></a></div></td>
-		                  <td>AP 2 E8452</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 2 L9</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>106</strong></a></div></td>
-		                  <td>AP 2 M1</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 2 N66 v.29</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>107</strong></a></div></td>
-		                  <td>AP 2 N66 v30</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 2 R255 v.8 pt.1</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>108</strong></a></div></td>
-		                  <td>AP 2 R255 v.8 pt.2</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 2 S5 v.84</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>109</strong></a></div></td>
-		                  <td>AP 2 S5 v.85</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 2 U735 v.46</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>110</strong></a></div></td>
-		                  <td>AP 2 U735 v.47</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 4 N16 v.19</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>111</strong></a></div></td>
-		                  <td>AP 4 n16 v.20</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 8 I25 v.99</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>112</strong></a></div></td>
-		                  <td>AP 8 I25 v.100</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 30 A71</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A103-114.html"><strong>113</strong></a></div></td>
-		                  <td>AP 30 A72</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AP 60 P9</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A114-116.html"><strong>114</strong></a></div></td>
-		                  <td>AP 60 Q1</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AS 8 E5 28th</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A114-116.html"><strong>115</strong></a></div></td>
-		                  <td>AS 8 E5 29th</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>AS 162 P27</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/A116.html"><strong>116</strong></a></div></td>
-		                  <td>AS 162 P28</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>B 1 A79</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B116-122.html"><strong>117</strong></a></div></td>
-		                  <td>B 1 A8</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>B 2 D53x v.16</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B116-122.html"><strong>118</strong></a></div></td>
-		                  <td>B 2 D53x v.17</td>
-		                  <td width="20">to	
-		                  </td>
-		                  <td>B 133 G5 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B116-122.html"><strong>119</strong></a></div></td>
-		                  <td>B 133 G51</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>B 831.5 H9</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B116-122.html"><strong>120</strong></a></div></td>
-		                  <td>B 831.5 I1</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>B 1893 R33 B9</td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B116-122.html"><strong>121</strong></a></div></td>
-		                  <td>B 1893 R33 C1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>B 3316 A25 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B122.html"><strong>122</strong></a></div></td>
-		                  <td>B 3316 A26</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BD 438 Q9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B122-123.html"><strong>123</strong></a></div></td>
-		                  <td>BD 438 R1</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BF 1 P79 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B123-129.html"><strong>124</strong></a></div></td>
-		                  <td>BF 1 P8 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BF 173 A2 M9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B123-129.html"><strong>125</strong></a></div></td>
-		                  <td>BF 173 A2 N1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BF 371 P69 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B123-129.html"><strong>126</strong></a></div></td>
-		                  <td>BF 371 P7 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BF 637 G9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B123-129.html"><strong>127</strong></a></div></td>
-		                  <td>BF 637 H1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BF 721 P79 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><strong><a href="../../Usered/tutorials/hatmapsstacks/B123-129.html">128</a></strong></div></td>
-		                  <td>BF 721 P8 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BF 1589 L9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B129.html"><strong>129</strong></a></div></td>
-		                  <td>BF 1589 M1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BL 1 H5 v.30 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B129-132.html"><strong>130</strong></a></div></td>
-		                  <td>BL 1 H5 v.31 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BL 625 E39 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B129-132.html"><strong>131</strong></a></div></td>
-		                  <td>BL 625 E4 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BL 2001.2 F9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B132.html"><strong>132</strong></a></div></td>
-		                  <td>BL 2001.2 G1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BP 163 S35 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B133.html"><strong>133</strong></a></div></td>
-		                  <td>BP 163 S35 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BR 53 M49 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B133-135.html"><strong>134</strong></a></div></td>
-		                  <td>BR 53 M5 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BR 754 U9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B135-136.html"><strong>135</strong></a></div></td>
-		                  <td>BR 754 W1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BS 2555.5 R9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B136.html"><strong>136</strong></a></div></td>
-		                  <td>BS 2555.5 S1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BV 4208 I79 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B137-139.html"><strong>137</strong></a></div></td>
-		                  <td>BV 4208 I8</td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BX 2618 Z9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/B137-139.html"><strong>138</strong></a></div></td>
-		                  <td>BX 2619 A1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>BX 8635.1 Z9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/C139-140.html"><strong>139</strong></a></div></td>
-		                  <td>BX 8635.2 A1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>CB 425 J9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/C140.html"><strong>140</strong></a></div></td>
-		                  <td>CB 425 K1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>CS 42 L9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/C141.html"><strong>141</strong></a></div></td>
-		                  <td>CS 42 M1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>D1 D5 1985 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D141-142.html"><strong>142</strong></a></div></td>
-		                  <td>D1 D5 1986 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>D 16.2 H49 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D142-148.html"><strong>143</strong></a></div></td>
-		                  <td>D 16.2 H5 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>D 202 F9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D142-148.html"><strong>144</strong></a></div></td>
-		                  <td>D 202 H1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>D 445 H49 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D142-148.html"><strong>145</strong></a></div></td>
-		                  <td>D 445 H5 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>D764 H59 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D142-148.html"><strong>146</strong></a></div></td>
-		                  <td>D764 H6 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>D 810 S7 B649 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D142-148.html"><strong>147</strong></a></div></td>
-		                  <td>D 810 S7 B65 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>D 839.3 C6 no. 289 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D148-152.html"><strong>148</strong></a></div></td>
-		                  <td>D839.3 C6 no. 290 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>DA 28 P49 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D148-152.html"><strong>149</strong></a></div></td>
-		                  <td>DA 28 P5 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>DA 255 Z9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D148-152.html"><strong>150</strong></a></div></td>
-		                  <td>DA 256 A1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>DA 535 R9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D148-152.html"><strong>151</strong></a></div></td>
-		                  <td>DA 535 S1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>DA 670 H2 V6 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D152-153.html"><strong>152</strong></a></div></td>
-		                  <td>DA 670 H2 V6 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>DB 80 M31 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D152-153.html"><strong>153</strong></a></div></td>
-		                  <td>DB 80 M32 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>DC 103 P9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D153-155.html"><strong>154</strong></a></div></td>
-		                  <td>DC 103 Q1 </td>
-		                  <td width="20">to</td>
-		                  <td>DC 316 P9 </td>
-		                </tr>
-		                <tr>
-		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D153-155.html"><strong>155</strong></a></div></td>
-		                  <td>DC 316 Q1 </td>
-		                  <td width="20">to
-		                  </td>
-		                  <td>DC 9999 Z9 </td>
-		                </tr>
-		               -->
+					}					  
+					  ?>				        
 		                </tbody>
 		              </table>
 			</div>
@@ -548,6 +162,26 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 		                  <td width="20">&nbsp; </td>
 		                  <td width="128"><b>Ends with:</b></td>
 		                </tr>
+		                <?
+					  $result = $db->query('SELECT * FROM Stacks where floor_id = 2');
+					  foreach($result as $row){					  	
+						print "<tr><td><div align=\"center\">";
+						$url = $row['number_url'];
+						if ( strlen($url) > 0 ){							
+							print "<a href='$url'>";
+						}
+						print $row['number'];
+						if ( strlen($url) > 0 ){							
+							print "</a>";
+						}
+						print "</div></td>";
+						print "<td>".$row['begins_with']."</td>";
+						print "<td width=\"20\">to</td>";						
+						print "<td>".$row['ends_with']."</td></tr>";
+					}
+					  
+					  ?>
+		                <!--
 		                <tr>
 		                  <td><div align="center"><a href="../../Usered/tutorials/hatmapsstacks/D201-203.html"><strong>201</strong></a></div></td>
 		                  <td>DD	1	A1<br /></td>
@@ -1171,9 +805,10 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 		                    <td>to</td>
 		                    <td>HB 149 Z9</td>
 		                  </tr>
+		                  -->
 		                  </tbody>
 					  </table>	
-			</div>		
+			</div>			
 			<h3><a href="#" id="terrell_bas_hd">Basement<br>Call Numbers: HB 150 - HV 5999</a></h3>
 			<div>
 				<table border="1" cellspacing="0" cellpadding="2">
@@ -1187,6 +822,25 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 		                    <td width="140">
 		                      <b>Ends with:</b></td>
 		                  </tr>
+		                  <?
+						$result = $db -> query('SELECT * FROM Stacks where floor_id = 3');
+						foreach ($result as $row) {
+							print "<tr><td><div align=\"center\">";
+							$url = $row['number_url'];
+							if (strlen($url) > 0) {
+								print "<a href='$url'>";
+							}
+							print $row['number'];
+							if (strlen($url) > 0) {
+								print "</a>";
+							}
+							print "</div></td>";
+							print "<td>" . $row['begins_with'] . "</td>";
+							print "<td width=\"20\">to</td>";
+							print "<td>" . $row['ends_with'] . "</td></tr>";
+						}
+									?>
+		                  <!--
 		                  <tr>
 		                    <td width="72">
 		                    <div align="center"><a href="../../Usered/tutorials/hatmapsstacks/H272-275.html"><strong>301</strong></a></div></td>
@@ -1874,6 +1528,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 		                    <td width="140">
 		                      HV 5999 Z9</td>
 		                  </tr>
+		                  -->
 		              </tbody>    
 		          </table>
 			</div>
@@ -1886,6 +1541,25 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 	              <td width="20">&nbsp; </td>
 	              <td width="130"><b>Ends with:</b></td>
 	            </tr>
+	            <?
+				$result = $db -> query('SELECT * FROM Stacks where floor_id = 4');
+				foreach ($result as $row) {
+					print "<tr><td><div align=\"center\">";
+					$url = $row['number_url'];
+					if (strlen($url) > 0) {
+						print "<a href='$url'>";
+					}
+					print $row['number'];
+					if (strlen($url) > 0) {
+						print "</a>";
+					}
+					print "</div></td>";
+					print "<td>" . $row['begins_with'] . "</td>";
+					print "<td width=\"20\">to</td>";
+					print "<td>" . $row['ends_with'] . "</td></tr>";
+				}
+								?>
+	            <!--
 	            <tr>
 	              <td width="61">
 	                <div align="center">1</div></td>
@@ -2482,6 +2156,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 	              </td>
 	              <td>999 V835s</td>
 	            </tr>
+	            -->
 	        </table>
 		</div>
 			<h3><a href="#"> Other Locations in The Library</a></h3>
@@ -2531,67 +2206,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 			          <td>Ground Floor</td>
 			        </tr>
 		      </table>
-			</div>
-		<!-- 
-		<h3><a href="#">Call Number Map</a></h3>
-		<div>
-			<div align="center">
-				<table border="1" cellpadding=2 cellspacing="0">
-					  <tr>
-						<td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
-					  </tr>
-					  <tr>
-						<td width="280">HV 6000 - KZZ</td>
-						<td width="143">1st Floor </td>
-					  </tr>
-					  <tr>
-						<td>L - PS 3299 </td>
-						<td>2nd Floor </td>
-					  </tr>
-					  <tr>
-						<td>PS 3302 - Z</td>
-						<td>3rd Floor </td>
-					  </tr>
-					  <tr>
-						<td>Jackson (State/Int'l) Docs MA-YO </td>
-						<td>3rd Floor </td>
-					  </tr>
-					  <tr>
-						<td>US Docs A - Y </td>
-						<td>3rd Floor </td>
-					  </tr>
-					  <tr>
-						<td>Oversize</td>
-						<td>3rd Floor </td>
-					  </tr>
-					</table>
-	    		</div>
-		   
-			    <div align="center">
-					<table border="1" cellpadding=2 cellspacing="0">
-					  <tr>
-						<td colspan="2"><div align="center"><strong>Terrell Library</strong></div></td>
-					  </tr>
-					  <tr>
-						<td width="267">A - DC 9999 Z9 </td>
-						<td width="145">1st Floor </td>
-					  </tr>
-					  <tr>
-						<td>DD - HB 149 Z9 </td>
-						<td>Ground Floor </td>
-					  </tr>
-					  <tr>
-						<td>Hb 150- HV 5999 </td>
-						<td>Basement</td>
-					  </tr>
-					  <tr valign="top">
-						<td>001-999 (DEWEY) </td>
-						<td>Basement, Compact Storage </td>
-					  </tr>
-					</table>					
-			   </div>
-			</div>
-		-->
+			</div>		
 		</div>
 	</div>
 	
@@ -2608,6 +2223,25 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 					<td width="20" valign="top"><strong> &nbsp;</strong></td>
 					<td width="139" valign="top"><strong> Ends with: </strong></td>
 				  </tr>
+				  <?
+				$result = $db -> query('SELECT * FROM Stacks where floor_id = 5');
+				foreach ($result as $row) {
+					print "<tr><td><div align=\"center\">";
+					$url = $row['number_url'];
+					if (strlen($url) > 0) {
+						print "<a href='$url'>";
+					}
+					print $row['number'];
+					if (strlen($url) > 0) {
+						print "</a>";
+					}
+					print "</div></td>";
+					print "<td>" . $row['begins_with'] . "</td>";
+					print "<td width=\"20\">to</td>";
+					print "<td>" . $row['ends_with'] . "</td></tr>";
+				}
+								?>
+				  <!--
 				  <tr>
 					<td width="66" valign="top"><div align="center"> 401 </div></td>
 					<td width="121" valign="top">Empty </td>
@@ -2806,6 +2440,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 					<td width="20" valign="top"> to </td>
 					<td width="139" valign="top"> KZZ Z9 </td>
 				  </tr>
+				  -->
 				  </tbody>
 			  </table>
 			</div>
@@ -2819,6 +2454,25 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 					<td width="23" height="20" valign="top"><strong> &nbsp;</strong></td>
 					<td width="139" height="20" valign="top"><strong> Ends with: </strong></td>
 				  </tr>
+				  <?
+				$result = $db -> query('SELECT * FROM Stacks where floor_id = 6');
+				foreach ($result as $row) {
+					print "<tr><td><div align=\"center\">";
+					$url = $row['number_url'];
+					if (strlen($url) > 0) {
+						print "<a href='$url'>";
+					}
+					print $row['number'];
+					if (strlen($url) > 0) {
+						print "</a>";
+					}
+					print "</div></td>";
+					print "<td>" . $row['begins_with'] . "</td>";
+					print "<td width=\"20\">to</td>";
+					print "<td>" . $row['ends_with'] . "</td></tr>";
+				}
+								?>
+				<!--				
 				  <tr>
 					<td width="66" height="20" valign="top"><div align="center"><strong> <a href="../../Usered/tutorials/hatmapsstacks/L500-501.html">500</a> </strong></div></td>
 					<td width="121" height="20" valign="top"> L 1 A1</td>
@@ -3383,6 +3037,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 					<td width="23" height="20" valign="top"> to </td>
 					<td width="139" height="20" valign="top"> PS 3292 R4 H3 1973 </td>
 				  </tr>
+				 -->
 				  </tbody>
 				</table>
 			</div>
@@ -3396,6 +3051,25 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 				      <td width="20" valign="top"><strong> &nbsp;</strong></td>
 				      <td width="133" valign="top"><strong> Ends with: </strong></td>
 				    </tr>
+				    <?
+				$result = $db -> query('SELECT * FROM Stacks where floor_id = 7');
+				foreach ($result as $row) {
+					print "<tr><td><div align=\"center\">";
+					$url = $row['number_url'];
+					if (strlen($url) > 0) {
+						print "<a href='$url'>";
+					}
+					print $row['number'];
+					if (strlen($url) > 0) {
+						print "</a>";
+					}
+					print "</div></td>";
+					print "<td>" . $row['begins_with'] . "</td>";
+					print "<td width=\"20\">to</td>";
+					print "<td>" . $row['ends_with'] . "</td></tr>";
+				}
+								?>
+					<!--			
 				    <tr>
 				      <td width="55" valign="top"><div align="center"><strong> <a href="../../Usered/tutorials/hatmapsstacks/P590-608.html">601 </a></strong></div></td>
 				      <td width="132" valign="top"> PS 3302 V5 1970 </td>
@@ -3654,6 +3328,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 				      <td width="20" valign="top"> to </td>
 				      <td width="133" valign="top"> ZZ 9999 Z9 </td>
 				    </tr>
+				   -->
 				    </tbody>
 			    </table>
 			</div>
@@ -3662,9 +3337,29 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 				<table border="1" cellspacing="0" cellpadding=2>
 			        <tr>
 			          <td width="55" valign="top"><strong> Stack# </strong></td>
-			          <td width="192" valign="top"><strong> Begins with: </strong></td>
-			          <td width="192" valign="top"><strong> Ends with: </strong></td>
+			          <td width="132" valign="top"><strong> Begins with: </strong></td>
+			          <td width="20" valign="top"><strong> &nbsp;</strong></td>
+			          <td width="133" valign="top"><strong> Ends with: </strong></td>
 			        </tr>
+			        <?
+				$result = $db -> query('SELECT * FROM Stacks where floor_id = 8');
+				foreach ($result as $row) {
+					print "<tr><td><div align=\"center\">";
+					$url = $row['number_url'];
+					if (strlen($url) > 0) {
+						print "<a href='$url'>";
+					}
+					print $row['number'];
+					if (strlen($url) > 0) {
+						print "</a>";
+					}
+					print "</div></td>";
+					print "<td>" . $row['begins_with'] . "</td>";
+					print "<td width=\"20\">to</td>";
+					print "<td>" . $row['ends_with'] . "</td></tr>";
+				}
+								?>
+			        <!--
 			        <tr>
 			          <td width="55" valign="top"> <div align="center"><strong>700 </strong></div></td>
 			          <td width="192" valign="top"> HOLDOC MA 1 AR17 AL 11 V.34 </td>
@@ -3715,6 +3410,7 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 			          <td width="192" valign="top"> HOLDOC TU 51 TD/B Of 3 14th session v.3 </td>
 			          <td width="192" valign="top"> HOLDOC UNY 72 SKJ Y9 1974 Aug.-1975 June </td>
 			        </tr>
+			        -->
 			      </table>
 			</div>
 			<h3><a href="#" id="holland_3rd_hd">3rd Floor<br>US Government Documents</a></h3>
@@ -3726,6 +3422,25 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 			          <td width="20" valign="top"><strong> &nbsp;</strong></td>
 			          <td width="196" valign="top"><strong> Ends with: </strong></td>
 			        </tr>
+			        <?
+				$result = $db -> query('SELECT * FROM Stacks where floor_id = 9');
+				foreach ($result as $row) {
+					print "<tr><td><div align=\"center\">";
+					$url = $row['number_url'];
+					if (strlen($url) > 0) {
+						print "<a href='$url'>";
+					}
+					print $row['number'];
+					if (strlen($url) > 0) {
+						print "</a>";
+					}
+					print "</div></td>";
+					print "<td>" . $row['begins_with'] . "</td>";
+					print "<td width=\"20\">to</td>";
+					print "<td>" . $row['ends_with'] . "</td></tr>";
+				}
+								?>
+					<!--			
 			        <tr>
 			          <td width="55" valign="top"> <div align="center"><strong>800 </strong></div></td>
 			          <td width="160" valign="top"> HOLDOC A 1.1/3 1983 1st half </td>
@@ -3876,64 +3591,14 @@ if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
 			          <td width="20" valign="top"> to </td>
 			          <td width="196" valign="top"> HOLDOC Z999 </td>
 			        </tr>
+			       -->
 			      </table>
 			</div>
 			
 			
 		</div>
 	</div>
-	
-	<!-- 
-	<div class"span-6 last">
-		<h2 align="center">Call Number Map</h2>
-		<div>
-			<table border="1">
-				<tr>
-					<td>Hey</td>
-				</tr>
-			</table>		
-		</div>
-		<div id="callMapDiv">
-			<table>
-				<tbody class="call_map">					  
-					  <tr>
-						<td >A - DC </td>
-						<td >Terrel 1st</td>
-					  </tr>
-					  <tr>
-						<td>DD - HB 149 Z9 </td>
-						<td>Terrel Ground</td>
-					  </tr>
-					  <tr>
-						<td>HB 150- HV 5999 </td>
-						<td>Terrel Basement</td>
-					  </tr>					 
-					  <tr>
-						<td >HV 6000 - KZZ</td>
-						<td >Holland First</td>
-					  </tr>
-					  <tr>
-						<td>L - PS 3299 </td>
-						<td>Holland Second</td>
-					  </tr>
-					  <tr>
-						<td>PS 3300 - Z</td>
-						<td>Holland Third</td>
-					  </tr>
-					  <tr>
-						<td>Jackson Docs </td>
-						<td>Holland Third</td>
-					  </tr>
-					  <tr>
-						<td>US Docs A - Y </td>
-						<td>Holland Third</td>
-					  </tr>					  
-				</tbody>
-			</table>
-		</div>
-	</div>
-	-->	
-	
+		
 
 </div>
 
