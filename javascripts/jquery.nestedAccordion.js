@@ -13,8 +13,8 @@ var txt = [];
 this.each(function(){$.each(this.childNodes, function() {
   if (this.nodeType == 3 && $.trim(this.nodeValue)) txt.push(this)})}); return $(txt);};
   
-$.fn.accordion = function(options) {
-    var o = $.extend({}, $.fn.accordion.defaults, options);
+$.fn.n_accordion = function(options) {
+    var o = $.extend({}, $.fn.n_accordion.defaults, options);
     
     return this.each(function() {
       var containerID = o.container ? '#' + this.id : '', objID = o.objID ? o.objID : o.obj + o.objClass,
@@ -170,7 +170,7 @@ $.fn.accordion = function(options) {
       }; 
       /* ----------------------------------------------- */
 });};
-$.fn.accordion.defaults = {
+$.fn.n_accordion.defaults = {
   container : true, // {true} if the plugin is called on the closest named container, {false} if the pligin is called on the accordion element
   obj : 'ul', // the element which contains the accordion - 'ul', 'ol', 'div' 
   objClass : '.accordion', // the class name of the accordion - required if you call the accordion on the container
@@ -243,13 +243,13 @@ $(function() {
 });
 
 /// We can globally replace the defaults, for example:
-  $.fn.accordion.defaults.initShow = "#current";
+  $.fn.n_accordion.defaults.initShow = "#current";
 --- */
 /// Example options for Hover Accordion:
 /* ---
-$.fn.accordion.defaults.container=false;
-$.fn.accordion.defaults.event="hover";
-$.fn.accordion.defaults.focus=false; // Optional. If it is possible, use {focus: true}, since {focus: false} will break the keyboard accessibility
-$.fn.accordion.defaults.initShow="#current";
-$.fn.accordion.defaults.lastChild=false;
+$.fn.n_accordion.defaults.container=false;
+$.fn.n_accordion.defaults.event="hover";
+$.fn.n_accordion.defaults.focus=false; // Optional. If it is possible, use {focus: true}, since {focus: false} will break the keyboard accessibility
+$.fn.n_accordion.defaults.initShow="#current";
+$.fn.n_accordion.defaults.lastChild=false;
 --- */
