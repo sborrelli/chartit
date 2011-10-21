@@ -43,12 +43,12 @@ $(function() {
       initShow : "div.shown"
     });
   $("#terrelDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
-      initShow : "div.shown"
+      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      initShow : "div.shown", showSpeed: 200, hideSpeed: 400
     });  
    $("#hollandDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
-      initShow : "div.shown"
+      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      initShow : "div.shown", showSpeed: 200, hideSpeed: 400
     }); 
   $("html").removeClass("js");
 });
@@ -102,17 +102,17 @@ $(function() {
 <div class="container showgrid">
 
 <?
-if(!($db=new PDO('sqlite:db/stackchart.sqlite')))
+if(!($db=new SQLite3('db/stackchart.sqlite')))
 	{
 		echo "<h2> Database Error </h2>";
 		die();
-	}
+	}	
 $page_size = 10;
 
 function displayStacks($db, $page_size, $floor_id, $element_id){
 	$i = 0;
 
-			$res = $db -> query("SELECT count(*) filas FROM Stacks where floor_id = $floor_id") -> fetch();
+			$res = $db -> query("SELECT count(*) filas FROM Stacks where floor_id = $floor_id") -> fetchArray();
 			$nstacks = $res['filas'];
 			//print all rows in several accordioned tables
 			while ($i * $page_size < $nstacks) {
@@ -122,7 +122,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				$res = $db -> query("SELECT begins_with 
 					  				FROM Stacks 
 					  				WHERE floor_id = $floor_id 
-					  				LIMIT 1 OFFSET $first_row_index") -> fetch();
+					  				LIMIT 1 OFFSET $first_row_index") -> fetchArray();
 				$begins = $res[0];
 				if (($i + 1) * $page_size <= $nstacks) {
 					$last_row_index = ($i + 1) * $page_size - 1;
@@ -132,13 +132,13 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				$res = $db -> query("SELECT ends_with 
 									FROM Stacks 
 									WHERE floor_id = $floor_id 
-									LIMIT 1 OFFSET $last_row_index") -> fetch();
+									LIMIT 1 OFFSET $last_row_index") -> fetchArray();
 				$ends = $res[0];
 
 				$row_title = "$begins to $ends";
 				$sub_header_id = $element_id . "_sh";
-				print "<h3>
-								<a href='#' id='$sub_header_id'>$row_title</a></h3>
+				print " <span class = 'sub_header'>						
+								<a href='#' id='$sub_header_id'>$row_title</a></span>
 								<div>
 								<table border='1' cellspacing='0' cellpadding='2'>
 								<tbody id='$element_id'>
@@ -158,12 +158,12 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 											LIMIT $page_size
 											OFFSET $first_row_index
 											" );
-				if($result === false) {
+				if($result == false) {
 				//Do not run a foreach as its not multi-dimensional array
-					$Error = $db->errorInfo();
-					throw new Exception($Error[2]); //Driver Specific Error
+					$Error = $db->lastErrorMsg();
+					throw new Exception($Error); //Driver Specific Error
 				}
-				foreach ($result as $row) {
+				while ($row = $result->fetchArray()) {
 					print "<tr><td><div align=\"center\">";
 					$url = $row['number_url'];
 					if (strlen($url) > 0) {
@@ -181,7 +181,8 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				}
 				//ending a section
 				print "</tbody></table>";
-				print "</div><div style=\"height: 5px; clear: both\">&nbsp;</div>";
+				print "</div>";
+				print "<div class='stacks_separator'>&nbsp;</div>";
 				$i++;
 			}
 }

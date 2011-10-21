@@ -79,6 +79,8 @@ tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 /*.sub_header {color: #FFFFFF; background-color: #32B7CF}*/
 
 .floor {padding-left: 15px}
+.stacks_separator {height: 5px; clear: both}
+.sub_header {font-size: 13px; color:white}
 
 /* overriding jquery ui css */
 /*.ui-widget { font-family: times, Times New Roman, times-roman, georgia, serif; font-size: 1.1em; }*/
