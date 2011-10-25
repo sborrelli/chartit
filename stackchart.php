@@ -102,7 +102,8 @@ $(function() {
 <div class="container showgrid">
 
 <?
-if(!($db=new SQLite3('db/stackchart.sqlite')))
+//if(!($db=new SQLite3('db/stackchart.sqlite')))
+if(!($db=sqlite_open("db/stackchart.sqlite2.db")))
 	{
 		echo "<h2> Database Error </h2>";
 		die();
@@ -112,27 +113,40 @@ $page_size = 10;
 function displayStacks($db, $page_size, $floor_id, $element_id){
 	$i = 0;
 
-			$res = $db -> query("SELECT count(*) filas FROM Stacks where floor_id = $floor_id") -> fetchArray();
+			//$res = $db -> query("SELECT count(*) filas FROM Stacks where floor_id = $floor_id") -> fetchArray();
+			//using sqlite2 here
+			$query = sqlite_query($db, "SELECT count(*) filas FROM Stacks where floor_id = $floor_id"); 
+			$res = sqlite_fetch_array($query);
 			$nstacks = $res['filas'];
 			//print all rows in several accordioned tables
 			while ($i * $page_size < $nstacks) {
 				//every $page_size records, there's a new section
 				$first_row_index = $i * $page_size;
 				//if($i % $page_size == 0){ //new sub accordion
-				$res = $db -> query("SELECT begins_with 
+				/*$res = $db -> query("SELECT begins_with 
 					  				FROM Stacks 
 					  				WHERE floor_id = $floor_id 
-					  				LIMIT 1 OFFSET $first_row_index") -> fetchArray();
+					  				LIMIT 1 OFFSET $first_row_index") -> fetchArray();*/
+				$query = sqlite_query($db, "SELECT begins_with 
+					  				FROM Stacks 
+					  				WHERE floor_id = $floor_id 
+					  				LIMIT 1 OFFSET $first_row_index"); 
+				$res = sqlite_fetch_array($query);					
 				$begins = $res[0];
 				if (($i + 1) * $page_size <= $nstacks) {
 					$last_row_index = ($i + 1) * $page_size - 1;
 				} else {
 					$last_row_index = $nstacks - 1;
 				}
-				$res = $db -> query("SELECT ends_with 
+				/*$res = $db -> query("SELECT ends_with 
 									FROM Stacks 
 									WHERE floor_id = $floor_id 
-									LIMIT 1 OFFSET $last_row_index") -> fetchArray();
+									LIMIT 1 OFFSET $last_row_index") -> fetchArray();*/
+				$query = sqlite_query($db, "SELECT ends_with 
+									FROM Stacks 
+									WHERE floor_id = $floor_id 
+									LIMIT 1 OFFSET $last_row_index"); 
+				$res = sqlite_fetch_array($query);					
 				$ends = $res[0];
 
 				$row_title = "$begins to $ends";
@@ -151,19 +165,31 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				        </tr>	";
 				//}
 				//actual rows
-				$result = $db -> query("SELECT * 
+				/*$result = $db -> query("SELECT * 
 											FROM Stacks s
 											WHERE floor_id = $floor_id 
 											ORDER BY s.number
 											LIMIT $page_size
 											OFFSET $first_row_index
-											" );
-				if($result == false) {
+											" );*/
+				$query = sqlite_query($db, "SELECT * 
+											FROM Stacks s
+											WHERE floor_id = $floor_id 
+											ORDER BY s.number
+											LIMIT $page_size
+											OFFSET $first_row_index"); 
+				/*if($result == false) {
 				//Do not run a foreach as its not multi-dimensional array
 					$Error = $db->lastErrorMsg();
 					throw new Exception($Error); //Driver Specific Error
+				}*/
+				if($last_error_code = sqlite_last_error($db)) {
+				//Do not run a foreach as its not multi-dimensional array
+					$Error = sqlite_error_string($last_error_code);
+					throw new Exception($Error); //Driver Specific Error
 				}
-				while ($row = $result->fetchArray()) {
+				//while ($row = $result->fetchArray()) {
+				while ($row = sqlite_fetch_array($query)) {	
 					print "<tr><td><div align=\"center\">";
 					$url = $row['number_url'];
 					if (strlen($url) > 0) {
@@ -259,113 +285,19 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 2, "terrell_gnd");				
-				?>
-				
-				<!--
-				<table border="1" cellspacing="0" cellpadding="2">
-					<tbody id="terrell_gnd">
-		                <tr>
-		                  <td width="66"><b>Stack #</b></td>
-						  <td width="138"><b>Begins with:</b></td>
-		                  <td width="20">&nbsp; </td>
-		                  <td width="128"><b>Ends with:</b></td>
-		                </tr>
-		                <?
-					  $result = $db->query('SELECT * FROM Stacks where floor_id = 2');
-					  foreach($result as $row){					  	
-						print "<tr><td><div align=\"center\">";
-						$url = $row['number_url'];
-						if ( strlen($url) > 0 ){							
-							print "<a href='$url'>";
-						}
-						print $row['number'];
-						if ( strlen($url) > 0 ){							
-							print "</a>";
-						}
-						print "</div></td>";
-						print "<td>".$row['begins_with']."</td>";
-						print "<td width=\"20\">to</td>";						
-						print "<td>".$row['ends_with']."</td></tr>";
-					}
-					  
-					  ?>
-					 		                
-		                  </tbody>
-					  </table>
-					  -->	
+				?>					
 			</div>			
 			<h2><a href="#" id="terrell_bas_hd" class="acc_head" >Basement<br>Call Numbers: HB 150 - HV 5999</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 3, "terrell_bas");				
-				?>
-				<!--
-				<table border="1" cellspacing="0" cellpadding="2">
-					<tbody id="terrell_bas">
-		                  <tr>
-		                    <td width="72">
-		                    <b>Stack #</b></td>
-		                    <td width="138">
-		                      <b>Begins with:</b></td>
-		                    <td width="20">&nbsp; </td>
-		                    <td width="140">
-		                      <b>Ends with:</b></td>
-		                  </tr>
-		                  <?
-						$result = $db -> query('SELECT * FROM Stacks where floor_id = 3');
-						foreach ($result as $row) {
-							print "<tr><td><div align=\"center\">";
-							$url = $row['number_url'];
-							if (strlen($url) > 0) {
-								print "<a href='$url'>";
-							}
-							print $row['number'];
-							if (strlen($url) > 0) {
-								print "</a>";
-							}
-							print "</div></td>";
-							print "<td>" . $row['begins_with'] . "</td>";
-							print "<td width=\"20\">to</td>";
-							print "<td>" . $row['ends_with'] . "</td></tr>";
-						}
-									?>		                 
-		              </tbody>    
-		          </table>
-		           -->
+				?>				
 			</div>
 			<h2><a href="#" id="terrell_bas_hd" class="acc_head" >Basement<br>Dewey Call Numbers: 001-999</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 4, "terrell_bas");				
-				?>
-			<!--
-			<table border="1" cellspacing="0" cellpadding="2">
-	            <tr>
-	              <td><b>Stack#</b></td>
-	              <td><b>Begins with:</b></td>
-	              <td width="20">&nbsp; </td>
-	              <td width="130"><b>Ends with:</b></td>
-	            </tr>	            
-	            <?
-				$result = $db -> query('SELECT * FROM Stacks where floor_id = 4');
-				foreach ($result as $row) {
-					print "<tr><td><div align=\"center\">";
-					$url = $row['number_url'];
-					if (strlen($url) > 0) {
-						print "<a href='$url'>";
-					}
-					print $row['number'];
-					if (strlen($url) > 0) {
-						print "</a>";
-					}
-					print "</div></td>";
-					print "<td>" . $row['begins_with'] . "</td>";
-					print "<td width=\"20\">to</td>";
-					print "<td>" . $row['ends_with'] . "</td></tr>";
-				}
-				?>	            
-	        </table>
-	        -->
+				?>			
 		</div>
 			<h2><a href="#" id="other_loc" class="acc_head" > Other Locations in The Library</a></h2>
 			<div>
@@ -415,58 +347,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 			        </tr>
 		      </table>
 			</div>			
-		</div>
-		<!--
-		<hr>
-		<div id="nextperiment" class="accordion">	
-			<h4>Nested Acc</h4>
-			<div class="inner">
-				<h5>Holland Library</h5>
-				<div class="inner">
-					<table border="1" cellpadding=2 cellspacing="0">						
-						  <tr>
-							<td width="317"> Cougar Copies</td>
-							<td width="122">1st Floor</td>
-						  </tr>
-						  <tr>
-							<td width="317"> Microforms</td>
-							<td width="122">1st Floor</td>
-						  </tr>
-						  <tr>
-							<td width="317"> Maproom</td>
-							<td width="122">1st Floor</td>
-						  </tr>
-						  <tr>
-							<td width="317"> Oversize</td>
-							<td width="122">3rd Floor</td>
-						  </tr>
-				  	</table>
-				</div>  
-					 
-				<h5>Terrell Library</h5>
-				<div class="inner">  
-					<table border="1" cellpadding=2 cellspacing="0">				        
-				        <tr>
-				          <td width="317">Reference</td>
-				          <td width="122">1st Floor</td>
-				        </tr>
-				        <tr>
-				          <td>CJ/Newspaper</td>
-				          <td>Ground Floor</td>
-				        </tr>
-				        <tr>
-				          <td>MASC <font size="-3">(Manuscripts, Archives, and Special Collections)</font></td>
-				          <td>Ground Floor</td>
-				        </tr>
-				        <tr>
-				          <td>Media Materials/Reserves</td>
-				          <td>Ground Floor</td>
-				        </tr>
-			      	</table>
-			    </div>
-			</div>	
-		</div>
-		-->
+		</div>		
 	</div>
 	
 	<div class="span-9 last">
@@ -477,182 +358,31 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 5, "holland_1st");				
-				?>
-				<!--
-				<table border=1 cellspacing=0 cellpadding=2>
-					<tbody id="holland_1st" class="stackchart">
-				  <tr>
-					<td width="66" valign="top"><strong> Stack# </strong></td>
-					<td width="121" valign="top"><strong> Begins with: </strong></td>
-					<td width="20" valign="top"><strong> &nbsp;</strong></td>
-					<td width="139" valign="top"><strong> Ends with: </strong></td>
-				  </tr>
-				  <?
-				$result = $db -> query('SELECT * FROM Stacks where floor_id = 5');
-				foreach ($result as $row) {
-					print "<tr><td><div align=\"center\">";
-					$url = $row['number_url'];
-					if (strlen($url) > 0) {
-						print "<a href='$url'>";
-					}
-					print $row['number'];
-					if (strlen($url) > 0) {
-						print "</a>";
-					}
-					print "</div></td>";
-					print "<td>" . $row['begins_with'] . "</td>";
-					print "<td width=\"20\">to</td>";
-					print "<td>" . $row['ends_with'] . "</td></tr>";
-				}
-								?>
-				  
-				  </tbody>
-			  </table>
-			  -->
+				?>				
 			</div>
 			<h2><a href="#" id="holland_2nd_hd" class="acc_head">2nd Floor<br>Call Numbers: L - PS 3299 </a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 6, "holland_2nd");				
-				?>
-				<!--
-				<table border=1 cellspacing=0 cellpadding=2>
-					<tbody id="holland_2nd">
-				  <tr>
-					<td width="66" height="20" valign="top"><strong> Stack# </strong></td>
-					<td width="121" height="20" valign="top"><strong> Begins with: </strong></td>
-					<td width="23" height="20" valign="top"><strong> &nbsp;</strong></td>
-					<td width="139" height="20" valign="top"><strong> Ends with: </strong></td>
-				  </tr>
-				  <?
-				$result = $db -> query('SELECT * FROM Stacks where floor_id = 6');
-				foreach ($result as $row) {
-					print "<tr><td><div align=\"center\">";
-					$url = $row['number_url'];
-					if (strlen($url) > 0) {
-						print "<a href='$url'>";
-					}
-					print $row['number'];
-					if (strlen($url) > 0) {
-						print "</a>";
-					}
-					print "</div></td>";
-					print "<td>" . $row['begins_with'] . "</td>";
-					print "<td width=\"20\">to</td>";
-					print "<td>" . $row['ends_with'] . "</td></tr>";
-				}
-								?>
-				  
-				  </tbody>
-				</table>
-				-->
+				?>				
 			</div>
 			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Call Numbers: PS 3302- Z </a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 7, "holland_3rd");				
-				?>
-				<!--
-				<table border="1" cellspacing="0" cellpadding=2>
-					<tbody id="holland_3rd">
-				    <tr>
-				      <td width="55" valign="top"><strong> Stack# </strong></td>
-				      <td width="132" valign="top"><strong> Begins with: </strong></td>
-				      <td width="20" valign="top"><strong> &nbsp;</strong></td>
-				      <td width="133" valign="top"><strong> Ends with: </strong></td>
-				    </tr>
-				    <?
-				$result = $db -> query('SELECT * FROM Stacks where floor_id = 7');
-				foreach ($result as $row) {
-					print "<tr><td><div align=\"center\">";
-					$url = $row['number_url'];
-					if (strlen($url) > 0) {
-						print "<a href='$url'>";
-					}
-					print $row['number'];
-					if (strlen($url) > 0) {
-						print "</a>";
-					}
-					print "</div></td>";
-					print "<td>" . $row['begins_with'] . "</td>";
-					print "<td width=\"20\">to</td>";
-					print "<td>" . $row['ends_with'] . "</td></tr>";
-				}
-								?>
-					
-				    </tbody>
-			    </table>
-			   -->
+				?>				
 			</div>
 			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Jackson Documents (State/Internat'l Govt. Docs.) </a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 8, "holland_3rd");			
-				?>
-					<!--			
-				<table border="1" cellspacing="0" cellpadding=2>
-			        <tr>
-			          <td width="55" valign="top"><strong> Stack# </strong></td>
-			          <td width="132" valign="top"><strong> Begins with: </strong></td>
-			          <td width="20" valign="top"><strong> &nbsp;</strong></td>
-			          <td width="133" valign="top"><strong> Ends with: </strong></td>
-			        </tr>
-			        <?
-				$result = $db -> query('SELECT * FROM Stacks s where floor_id = 8 order by s.number ');
-				foreach ($result as $row) {
-					print "<tr><td><div align=\"center\">";
-					$url = $row['number_url'];
-					if (strlen($url) > 0) {
-						print "<a href='$url'>";
-					}
-					print $row['number'];
-					if (strlen($url) > 0) {
-						print "</a>";
-					}
-					print "</div></td>";
-					print "<td>" . $row['begins_with'] . "</td>";
-					print "<td width=\"20\">to</td>";
-					print "<td>" . $row['ends_with'] . "</td></tr>";
-				}
-								?>
-			        
-			      </table>
-			    -->
+				?>					
 			</div>
 			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>US Government Documents</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 9, "holland_3rd");			
-				?>
-				<!--
-				<table border="1" cellspacing="0" cellpadding=2>
-			        <tr>
-			          <td width="55" valign="top"><strong> Stack# </strong></td>
-			          <td width="160" valign="top"><strong> Begins with: </strong></td>
-			          <td width="20" valign="top"><strong> &nbsp;</strong></td>
-			          <td width="196" valign="top"><strong> Ends with: </strong></td>
-			        </tr>
-			        <?
-				$result = $db -> query('SELECT * FROM Stacks where floor_id = 9');
-				foreach ($result as $row) {
-					print "<tr><td><div align=\"center\">";
-					$url = $row['number_url'];
-					if (strlen($url) > 0) {
-						print "<a href='$url'>";
-					}
-					print $row['number'];
-					if (strlen($url) > 0) {
-						print "</a>";
-					}
-					print "</div></td>";
-					print "<td>" . $row['begins_with'] . "</td>";
-					print "<td width=\"20\">to</td>";
-					print "<td>" . $row['ends_with'] . "</td></tr>";
-				}
-								?>
-					
-			      </table>
-			     -->
+				?>				
 			</div>
 			
 			
@@ -661,7 +391,11 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 		
 
 </div>
-
+<?
+	if($db){		
+		sqlite_close($db);
+	}
+?>
 <div style="clear: both"></div>
 <!-- 
 <h3 align="center">WSU Libraries &nbsp;<input type=BUTTON NAME=BtnName VALUE='RETURN' onClick='Return()'></h4>
