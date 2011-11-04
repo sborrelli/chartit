@@ -16,10 +16,12 @@ if(isset($_REQUEST['btSave'])){
 	
 	if($id > 0){
 		//updating
-		$query = "UPDATE Stacks 
+		$query = "BEGIN TRANSACTION;
+			UPDATE Stacks 
 			SET number = $number, begins_with = '$begins_with', 
 			ends_with = '$ends_with', number_url = '$url', floor_id = $floor_id
-			WHERE id = $id";
+			WHERE id = $id;
+			COMMIT;";
 		//$equery = sqlite_escape_string($query);	
 		if(!sqlite_exec($db, $query)){
 			$info_style = "error";
@@ -30,8 +32,10 @@ if(isset($_REQUEST['btSave'])){
 		}
 	} else {
 		//new stack
-		$query = "INSERT INTO Stacks (number, begins_with, ends_with, number_url, floor_id)
-			VALUES ($number, '$begins_with', '$ends_with', '$url', $floor_id)";
+		$query = "BEGIN TRANSACTION;
+			INSERT INTO Stacks (number, begins_with, ends_with, number_url, floor_id)
+			VALUES ($number, '$begins_with', '$ends_with', '$url', $floor_id);
+			COMMIT";
 			;
 		//$equery = sqlite_escape_string($query);	
 		if(!sqlite_exec($db, $query)){

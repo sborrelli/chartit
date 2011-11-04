@@ -6,7 +6,9 @@ if(!($db=sqlite_open("../db/stackchart.sqlite2.db")))
 	}
 
 $id = $_REQUEST['stackId'];
-$query = "DELETE FROM Stacks WHERE id = $id";
+$query = "BEGIN TRANSACTION;
+		DELETE FROM Stacks WHERE id = $id;
+		COMMIT;";
 $res = sqlite_exec($db, $query);
 //$res = rand(0,4);
 if($res){
@@ -42,4 +44,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		<br>
 		<a href="index.php">Back to stacks list</a>
 	</body>
-	</html>
+</html>
+<?
+sqlite_close($db); 
+?>
