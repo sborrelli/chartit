@@ -99,5 +99,13 @@ tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 #terrell_gnd_sh {padding-left: 1em; color: #FFFFFF; background-color: #ED7B24}
 #terrell_bas_sh {padding-left: 1em; color: #FFFFFF; background-color: #B5C034}
 
+/*admin screen elements*/
+
+label {
+	float: left;
+	width: 10em;
+	margin-right: 1em;
+	padding: 5px;
+}
 
 
