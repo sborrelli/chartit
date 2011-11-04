@@ -4,6 +4,7 @@ if(!($db=sqlite_open("../db/stackchart.sqlite2.db")))
 		echo "<h2> Database Error </h2>";
 		die();
 	}
+$info_style = "notice";
 // check if saving
 if(isset($_REQUEST['btSave'])){
 	$id = $_REQUEST['id'];
@@ -21,8 +22,10 @@ if(isset($_REQUEST['btSave'])){
 			WHERE id = $id";
 		//$equery = sqlite_escape_string($query);	
 		if(!sqlite_exec($db, $query)){
-			$msg = "Error updating the stack";
+			$info_style = "error";
+			$msg = "Error updating the stack: ".sqlite_error_string(sqlite_last_error($db));
 		} else {
+			$info_style = "success";
 			$msg = "Stack updated succesfully";
 		}
 	} else {
@@ -32,8 +35,10 @@ if(isset($_REQUEST['btSave'])){
 			;
 		//$equery = sqlite_escape_string($query);	
 		if(!sqlite_exec($db, $query)){
-			$msg = "Error saving the stack";
+			$info_style = "error";
+			$msg = "Error saving the stack: ".sqlite_error_string(sqlite_last_error($db));
 		} else {
+			$info_style = "success";
 			$msg = "Stack saved succesfully";
 			$stackId = sqlite_last_insert_rowid($db); 
 		}
@@ -99,7 +104,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <body>			
 	<div id="formDiv" class="container" height="800px">
 	<? if (isset($msg) && $msg){
-		print "<span class=\"notice\">".$msg."</span>";
+		print "<br><div class=\"$info_style\">".$msg."</div>";
 	}?>	
 	<h2><?=$header?></h2>
 	

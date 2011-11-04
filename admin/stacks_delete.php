@@ -16,7 +16,7 @@ if($res){
 } else {
 	//fail
 	$info_style = "error";
-	$msg = "There was an error deleting the stack from database";
+	$msg = "Error deleting the stack from database: ".sqlite_error_string(sqlite_last_error($db));
 }
 ?>
 <!DOCTYPE html 
