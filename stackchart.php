@@ -15,9 +15,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<script type="text/javascript" src="javascripts/jquery.nestedAccordion.js"></script>	
-<link href="css/stylesheets/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="javascripts/jquery.nestedAccordion.js"></script>
 <link href="css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/stylesheets/style.css" rel="stylesheet" type="text/css" />
 
 <title>Holland & Terrell Stack Chart</title>
 <script language="JavaScript"><!--
@@ -43,13 +43,21 @@ $(function() {
       initShow : "div.shown"
     });
   $("#terrelDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
       initShow : "div.shown", showSpeed: 200, hideSpeed: 400
     });  
    $("#hollandDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
       initShow : "div.shown", showSpeed: 200, hideSpeed: 400
     }); 
+   /*$("#mapDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
+      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      initShow : "div.shown", showSpeed: 200, hideSpeed: 400
+    }); */
+    $("#otherDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
+      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      initShow : "div.shown", showSpeed: 200, hideSpeed: 400
+    });
   $("html").removeClass("js");
 });
   
@@ -92,8 +100,7 @@ $(function() {
 <!-- END HEADER --> 
 
 
-<h3 align="center">WSU Library Instruction</h3>
-<h2 align="center">Holland & Terrell Stack Chart</h2>
+<h1 align="center">Holland & Terrell Stack Chart</h1>
 
 <hr />
 
@@ -149,15 +156,16 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				$res = sqlite_fetch_array($query);					
 				$ends = $res[0];
 
-				$row_title = "$begins to $ends";
+				$row_title = "<span style=\"display:inline-block; width: 10em\">$begins</span>
+							to <span style=\"display: inline-block; position: relative; left: 2em\"> $ends</span>";
 				$sub_header_id = $element_id . "_sh";
-				print " <span class = 'sub_header'>						
-								<a href='#' id='$sub_header_id'>$row_title</a></span>
-								<div>
+				print " <h3 class = 'sub_header'>						
+							<a href='#' id='$sub_header_id'>$row_title</a>
+						</h3>
+							<div>
 								<table border='1' cellspacing='0' cellpadding='2'>
 								<tbody id='$element_id'>
-					    		<tr>
-							<tr>
+						<tr>
 		                  <td width='68'><b>Stack #</b></td>
 		                  <td width='152'><b>Begins with:</b></td>
 		                  <td width='20'>&nbsp;</td>
@@ -193,7 +201,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 					print "<tr><td><div align=\"center\">";
 					$url = $row['number_url'];
 					if (strlen($url) > 0) {
-						print "<a href='$url'>";
+						print "<a href='$url' style='text-decoration: underline'>";
 					}
 					print $row['number'];
 					if (strlen($url) > 0) {
@@ -221,59 +229,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 		<h1 align="center" >Terrell Library </h1>
 		<br>
 		<div id="terrelDiv">
-			<h2><a href="#" id="call_map" class="acc_head" >Holland &amp; Terrell Call Number Map</a></h2>
-			<div>
-				<div align="center">
-					<table border="1" cellpadding=2 cellspacing="0">
-						<tbody class="call_map">					 					  
-					  <tr>
-						<td width="267">A - DC </td>
-						<td width="145">Terrel 1st</td>
-					  </tr>
-					  <tr>
-						<td>DD - HB 149 Z9 </td>
-						<td>Terrel Ground</td>
-					  </tr>
-					  <tr>
-						<td>HB 150- HV 5999 </td>
-						<td>Terrel Basement</td>
-					  </tr>
-					  <!-- 
-					  <tr valign="top">
-						<td>001-999 (DEWEY) </td>
-						<td>Basement, Compact Storage </td>
-					  </tr>
-					  -->
-					  <tr>
-						<td width="280">HV 6000 - KZZ</td>
-						<td width="143">Holland First</td>
-					  </tr>
-					  <tr>
-						<td>L - PS 3299 </td>
-						<td>Holland Second</td>
-					  </tr>
-					  <tr>
-						<td>PS 3300 - Z</td>
-						<td>Holland Third</td>
-					  </tr>
-					  <tr>
-						<td>Jackson Docs </td>
-						<td>Holland Third</td>
-					  </tr>
-					  <tr>
-						<td>US Docs A - Y </td>
-						<td>Holland Third</td>
-					  </tr>
-					  <!--
-					  <tr>
-						<td>Oversize</td>
-						<td>3rd Floor </td>
-					  </tr>
-					  -->
-					  </tbody>
-					</table>
-	    		</div>		    
-			</div>
+			
 			<h2><a href="#" id="terrell_1st_hd" class="acc_head" >1st Floor<br>Call Numbers: A - DC</a></h2>
 			<div class="floor">	
 			<?
@@ -298,55 +254,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				<?
 				displayStacks($db, $page_size, 4, "terrell_bas");				
 				?>			
-		</div>
-			<h2><a href="#" id="other_loc" class="acc_head" > Other Locations in The Library</a></h2>
-			<div>
-				<table border="1" cellpadding=2 cellspacing="0">
-					<tr>
-						<td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
-					  </tr>
-					  <tr>
-						<td width="317"> Cougar Copies</td>
-						<td width="122">1st Floor</td>
-					  </tr>
-					  <tr>
-						<td width="317"> Microforms</td>
-						<td width="122">1st Floor</td>
-					  </tr>
-					  <tr>
-						<td width="317"> Maproom</td>
-						<td width="122">1st Floor</td>
-					  </tr>
-					  <tr>
-						<td width="317"> Oversize</td>
-						<td width="122">3rd Floor</td>
-					  </tr>
-			  		</table>
-				  
-				  &nbsp;
-				  <table border="1" cellpadding=2 cellspacing="0">
-			        <tr>
-			          <td colspan="2"><div align="center"><strong>Terrell Library</strong></div>
-			          </td>
-			        </tr>
-			        <tr>
-			          <td width="317">Reference</td>
-			          <td width="122">1st Floor</td>
-			        </tr>
-			        <tr>
-			          <td>CJ/Newspaper</td>
-			          <td>Ground Floor</td>
-			        </tr>
-			        <tr>
-			          <td>MASC <font size="-3">(Manuscripts, Archives, and Special Collections)</font></td>
-			          <td>Ground Floor</td>
-			        </tr>
-			        <tr>
-			          <td>Media Materials/Reserves</td>
-			          <td>Ground Floor</td>
-			        </tr>
-		      </table>
-			</div>			
+			</div>						
 		</div>		
 	</div>
 	
@@ -372,7 +280,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				displayStacks($db, $page_size, 7, "holland_3rd");				
 				?>				
 			</div>
-			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Jackson Documents (State/Internat'l Govt. Docs.) </a></h2>
+			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Jackson Documents </a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 8, "holland_3rd");			
@@ -383,14 +291,125 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				<?
 				displayStacks($db, $page_size, 9, "holland_3rd");			
 				?>				
-			</div>
-			
+			</div>		
 			
 		</div>
-	</div>
-		
-
+	</div>	
 </div>
+<div style="height:10px; clear: both"></div>
+<!--
+<div id="grayDiv" class="span-9">
+	<div id="mapDiv" class="shown">
+		<h2><a href="#" id="call_map" class="acc_head" >Holland &amp; Terrell Call Number Map</a></h2>
+		<div>
+			<div align="center">
+				<table border="1" cellpadding=2 cellspacing="0">
+					<tbody class="call_map">
+						<tr>
+							<td width="267">A - DC </td>
+							<td width="145">Terrel 1st</td>
+						</tr>
+						<tr>
+							<td>DD - HB 149 Z9 </td>
+							<td>Terrel Ground</td>
+						</tr>
+						<tr>
+							<td>HB 150- HV 5999 </td>
+							<td>Terrel Basement</td>
+						</tr>								
+						<tr>
+							<td width="280">HV 6000 - KZZ</td>
+							<td width="143">Holland First</td>
+						</tr>
+						<tr>
+							<td>L - PS 3299 </td>
+							<td>Holland Second</td>
+						</tr>
+						<tr>
+							<td>PS 3300 - Z</td>
+							<td>Holland Third</td>
+						</tr>
+						<tr>
+							<td>Jackson Docs </td>
+							<td>Holland Third</td>
+						</tr>
+						<tr>
+							<td>US Docs A - Y </td>
+							<td>Holland Third</td>
+						</tr>								
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>
+-->
+<div class="span-18 last">
+	<div id="otherDiv">
+		<h2><a href="#" id="other_loc" class="acc_head" > Other Locations in The Library</a></h2>
+			<div>
+				<!--
+				<div class="span-9">
+					<table border="1" cellpadding=2 cellspacing="0">
+						<tr>
+							<td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
+						</tr>
+						<tr>
+							<td width="317"> Cougar Copies</td>
+							<td width="122">1st Floor</td>
+						</tr>
+						<tr>
+							<td width="317"> Microforms</td>
+							<td width="122">1st Floor</td>
+						</tr>
+						<tr>
+							<td width="317"> Maproom</td>
+							<td width="122">1st Floor</td>
+						</tr>
+						<tr>
+							<td width="317"> Oversize</td>
+							<td width="122">3rd Floor</td>
+						</tr>
+			  		</table>
+				</div>
+				-->
+				<div>				  
+				  <table border="1" cellpadding=2 cellspacing="0">
+			        <tr>
+			          <td colspan="2"><div align="center"><strong>Terrell Library</strong></div>
+			          <td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
+			          </td>
+			        </tr>
+			        <tr>
+			          <td width="317">Reference</td>
+			          <td width="122">1st Floor</td>
+			          <td width="317"> Cougar Copies</td>
+					  <td width="122">1st Floor</td>
+			        </tr>
+			        <tr>
+			          <td>CJ/Newspaper</td>
+			          <td>Ground Floor</td>
+			          <td width="317"> Microforms</td>
+					  <td width="122">1st Floor</td>
+			        </tr>
+			        <tr>
+			          <td>MASC <font size="-3">(Manuscripts, Archives, and Special Collections)</font></td>
+			          <td>Ground Floor</td>
+			          <td width="317"> Maproom</td>
+					  <td width="122">1st Floor</td>
+			        </tr>
+			        <tr>
+			          <td>Media Materials/Reserves</td>
+			          <td>Ground Floor</td>
+			          <td width="317"> Oversize</td>
+					  <td width="122">3rd Floor</td>
+			        </tr>
+		      		</table>
+		      	</div>
+			</div>
+	</div>
+</div>
+
 <?
 	if($db){		
 		sqlite_close($db);
