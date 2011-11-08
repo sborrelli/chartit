@@ -24,17 +24,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	function Return () {    
     	history.go(-2);
     }
-    // Activate the accordion control
-	$(document).ready(function() {
-    //$("#terrelDiv").accordion({ active: false , collapsible: true, autoHeight: false});
-    /*$("#hollandDiv").accordion({ active: false , collapsible: true, autoHeight: false});*/
-    /*$("#nextperiment").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-      head: "h4, h5", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
-      initShow : "div.shown"
-    });*/
-  });
   
-  
+  // Activate the accordion controls
   $("html").addClass("js");
 $.fn.n_accordion.defaults.container = false; 
 $(function() {
@@ -129,14 +120,11 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 			while ($i * $page_size < $nstacks) {
 				//every $page_size records, there's a new section
 				$first_row_index = $i * $page_size;
-				//if($i % $page_size == 0){ //new sub accordion
-				/*$res = $db -> query("SELECT begins_with 
-					  				FROM Stacks 
-					  				WHERE floor_id = $floor_id 
-					  				LIMIT 1 OFFSET $first_row_index") -> fetchArray();*/
+				
 				$query = sqlite_query($db, "SELECT begins_with 
 					  				FROM Stacks 
 					  				WHERE floor_id = $floor_id 
+					  				AND begins_with not like 'Empty'
 					  				LIMIT 1 OFFSET $first_row_index"); 
 				$res = sqlite_fetch_array($query);					
 				$begins = $res[0];
@@ -145,10 +133,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				} else {
 					$last_row_index = $nstacks - 1;
 				}
-				/*$res = $db -> query("SELECT ends_with 
-									FROM Stacks 
-									WHERE floor_id = $floor_id 
-									LIMIT 1 OFFSET $last_row_index") -> fetchArray();*/
+				
 				$query = sqlite_query($db, "SELECT ends_with 
 									FROM Stacks 
 									WHERE floor_id = $floor_id 
@@ -156,8 +141,8 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				$res = sqlite_fetch_array($query);					
 				$ends = $res[0];
 
-				$row_title = "<span style=\"display:inline-block; width: 10em\">$begins</span>
-							to <span style=\"display: inline-block; position: relative; left: 2em\"> $ends</span>";
+				/*$row_title = "<span style=\"display:inline-block; width: 10em\">$begins</span>
+							to <span style=\"display: inline-block; position: relative; left: 2em\"> $ends</span>";*/
 				$sub_header_id = $element_id . "_sh";
 				print " <span >						
 							<a href='#'>							
@@ -171,7 +156,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 							</a>
 						</span>
 						<div>
-							<table border='1' cellspacing='0' cellpadding='2'>
+							<table cellspacing='0' cellpadding='2'>
 							<tbody id='$element_id'>
 								<tr>
 				                  <td width='68'><b>Stack #</b></td>
@@ -181,30 +166,19 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 						        </tr>	";
 				//}
 				//actual rows
-				/*$result = $db -> query("SELECT * 
-											FROM Stacks s
-											WHERE floor_id = $floor_id 
-											ORDER BY s.number
-											LIMIT $page_size
-											OFFSET $first_row_index
-											" );*/
+				
 				$query = sqlite_query($db, "SELECT * 
 											FROM Stacks s
 											WHERE floor_id = $floor_id 
 											ORDER BY s.number
 											LIMIT $page_size
 											OFFSET $first_row_index"); 
-				/*if($result == false) {
-				//Do not run a foreach as its not multi-dimensional array
-					$Error = $db->lastErrorMsg();
-					throw new Exception($Error); //Driver Specific Error
-				}*/
+				
 				if($last_error_code = sqlite_last_error($db)) {
 				//Do not run a foreach as its not multi-dimensional array
 					$Error = sqlite_error_string($last_error_code);
 					throw new Exception($Error); //Driver Specific Error
 				}
-				//while ($row = $result->fetchArray()) {
 				while ($row = sqlite_fetch_array($query)) {	
 					print "<tr><td><div align=\"center\">";
 					$url = $row['number_url'];
@@ -219,7 +193,6 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 					print "<td>" . $row['begins_with'] . "</td>";
 					print "<td width=\"20\">to</td>";
 					print "<td>" . $row['ends_with'] . "</td></tr>";
-					//$i++;
 				}
 				//ending a section
 				print "</tbody></table>";
