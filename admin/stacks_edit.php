@@ -131,7 +131,6 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		<input type="submit" name="btSave" value="Save">
 		<input type="reset" value="Reset">
 		</fieldset>
-		<!-- <?= var_dump($stack) ?> -->
 		</form>
 		<br>
 		<a href="index.php">Back to stacks list</a>

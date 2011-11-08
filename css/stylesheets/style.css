@@ -80,7 +80,8 @@ tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 
 .floor {padding-left: 15px}
 .stacks_separator {height: 5px; clear: both}
-.sub_header {font-size: 13px; color:white}
+.sub_header {font-size: 13px; color:white; margin-bottom: 2px}
+.td_sub_head {font-weight: bold; text-align: left}
 
 /* overriding jquery ui css */
 /*.ui-widget { font-family: times, Times New Roman, times-roman, georgia, serif; font-size: 1.1em; }*/
@@ -92,7 +93,7 @@ tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 #terrell_gnd_hd {background-color: #ED7B24; color: #FFFFFF}
 #terrell_bas_hd {background-color: #B5C034; color: #FFFFFF}
 
-#holland_1st_sh {padding-left: 1em; color: #FFFFFF; background-color: #5E6B72}
+#holland_1st_sh {padding-left: 1em; color: #FFFFFF; background-color: #5E6B72; margin-bottom: 2px}
 #holland_2nd_sh {padding-left: 1em; color: #FFFFFF; background-color: #255981}
 #holland_3rd_sh {padding-left: 1em; color: #FFFFFF; background-color: #981D32}
 #terrell_1st_sh {padding-left: 1em; color: #FFFFFF; background-color: #32B7CF}

@@ -43,11 +43,11 @@ $(function() {
       initShow : "div.shown"
     });
   $("#terrelDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
       initShow : "div.shown", showSpeed: 200, hideSpeed: 400
     });  
    $("#hollandDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
+      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
       initShow : "div.shown", showSpeed: 200, hideSpeed: 400
     }); 
    /*$("#mapDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
@@ -159,18 +159,26 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				$row_title = "<span style=\"display:inline-block; width: 10em\">$begins</span>
 							to <span style=\"display: inline-block; position: relative; left: 2em\"> $ends</span>";
 				$sub_header_id = $element_id . "_sh";
-				print " <h3 class = 'sub_header'>						
-							<a href='#' id='$sub_header_id'>$row_title</a>
-						</h3>
-							<div>
-								<table border='1' cellspacing='0' cellpadding='2'>
-								<tbody id='$element_id'>
-						<tr>
-		                  <td width='68'><b>Stack #</b></td>
-		                  <td width='152'><b>Begins with:</b></td>
-		                  <td width='20'>&nbsp;</td>
-		                  <td width='149'><b>Ends with:</b> </td>
-				        </tr>	";
+				print " <span >						
+							<a href='#'>							
+							<table id='$sub_header_id' class = 'sub_header'>
+								<tr>
+									<td width='120px' class='td_sub_head'>$begins</td>
+									<td width='1em' class='td_sub_head'>to</td>
+									<td class='td_sub_head'>$ends</td>
+								</tr>
+							</table>
+							</a>
+						</span>
+						<div>
+							<table border='1' cellspacing='0' cellpadding='2'>
+							<tbody id='$element_id'>
+								<tr>
+				                  <td width='68'><b>Stack #</b></td>
+				                  <td width='152'><b>Begins with:</b></td>
+				                  <td width='20'>&nbsp;</td>
+				                  <td width='149'><b>Ends with:</b> </td>
+						        </tr>	";
 				//}
 				//actual rows
 				/*$result = $db -> query("SELECT * 
