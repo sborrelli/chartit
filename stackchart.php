@@ -181,9 +181,20 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				}
 				while ($row = sqlite_fetch_array($query)) {	
 					print "<tr><td><div align=\"center\">";
-					$url = $row['number_url'];
+					$url = $row['map_url'];
 					if (strlen($url) > 0) {
-						print "<a href='$url' style='text-decoration: underline'>";
+						$map_coords = $row['map_coords'];
+						$params = explode("#", $map_coords);
+						if(count($params) == 4){
+							$url = $url."?posx=".$params[0]."&posy=".$params[1]."&height=".$params[2]."&width=".$params[3];
+						} else {
+							$url = "";
+						}
+					} else {
+						$url = $row['number_url'];						
+					}
+					if (strlen($url) > 0) {
+							print "<a href='$url' style='text-decoration: underline'>";
 					}
 					print $row['number'];
 					if (strlen($url) > 0) {
