@@ -186,7 +186,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 						$map_coords = $row['map_coords'];
 						$params = explode("#", $map_coords);
 						if(count($params) == 4){
-							$url = $url."?posx=".$params[0]."&posy=".$params[1]."&height=".$params[2]."&width=".$params[3];
+							$url = "map.php?floor=".$url."&posx=".$params[0]."&posy=".$params[1]."&height=".$params[2]."&width=".$params[3];
 						} else {
 							$url = "";
 						}
