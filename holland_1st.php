@@ -28,7 +28,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 					img.src = "images/holland_1st.jpg";
 					img.usemap = "#Map";
 					img.onload = function(){				
-						ctxt.drawImage(img, 0, 0, 575, 451);
+						ctxt.drawImage(img, 0, 0, img.width, img.height);
 						//draw the rectangle						
 						ctxt.globalAlpha = 0.5;					
 						ctxt.fillStyle="#FF0000";										
