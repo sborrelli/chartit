@@ -26,7 +26,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 					var ctxt = cnvs.getContext('2d');
 					//load image in canvas				
 					var img = new Image();					
-					img.src = "images/<?=$image?>.jpg";
+					img.src = "images/<?=$image?>";
 					//img.usemap = "#Map";
 					img.onload = function(){				
 						ctxt.drawImage(img, 0, 0, img.width, img.height);

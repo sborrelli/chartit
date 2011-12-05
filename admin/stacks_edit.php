@@ -13,13 +13,16 @@ if(isset($_REQUEST['btSave'])){
 	$begins_with = sqlite_escape_string($_REQUEST['begins_with']);
 	$ends_with = sqlite_escape_string($_REQUEST['ends_with']);
 	$url = sqlite_escape_string($_REQUEST['url']);
+	$map_url = sqlite_escape_string($_REQUEST['map_url']);
+	$map_coords = sqlite_escape_string($_REQUEST['map_coords']);
 	
 	if($id > 0){
 		//updating
 		$query = "BEGIN TRANSACTION;
 			UPDATE Stacks 
 			SET number = $number, begins_with = '$begins_with', 
-			ends_with = '$ends_with', number_url = '$url', floor_id = $floor_id
+			ends_with = '$ends_with', number_url = '$url', floor_id = $floor_id,
+			map_url = '$map_url', map_coords = '$map_coords'
 			WHERE id = $id;
 			COMMIT;";
 		//$equery = sqlite_escape_string($query);	
@@ -33,8 +36,8 @@ if(isset($_REQUEST['btSave'])){
 	} else {
 		//new stack
 		$query = "BEGIN TRANSACTION;
-			INSERT INTO Stacks (number, begins_with, ends_with, number_url, floor_id)
-			VALUES ($number, '$begins_with', '$ends_with', '$url', $floor_id);
+			INSERT INTO Stacks (number, begins_with, ends_with, number_url, floor_id, map_url, map_coords)
+			VALUES ($number, '$begins_with', '$ends_with', '$url', $floor_id, '$map_url','$map_coords');
 			COMMIT";
 			;
 		//$equery = sqlite_escape_string($query);	
@@ -58,7 +61,7 @@ if(!isset($stackId)){
 if($stackId){ //not zero
 	$query = "SELECT s.id id, s.number number, s.number_url url,
 			s.begins_with begins, s.ends_with ends, f.name floor, s.floor_id floor_id,
-			l.name library, f.library_id library_id
+			l.name library, f.library_id library_id, s.map_url map_url, s.map_coords map_coords
 			FROM Stacks s join Floors f on s.floor_id = f.id
 				join Libraries l on l.id = f.library_id
 			WHERE s.id = $stackId";
@@ -85,6 +88,8 @@ if($stackId){ //not zero
 	$stack['begins'] = '';
 	$stack['ends'] = '';
 	$stack['url'] = '';	
+	$stack['map_url'] = '';
+	$stack['map_coords'] = '';
 }
 
 ?>
@@ -104,6 +109,125 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <link href="../css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>  
 <title>Holland & Terrell Stack Chart Admin</title>
+<script type="text/javascript" src="../javascripts/position.js"></script>
+<script type="text/javascript">
+
+	var imgH, imgW;
+	var cnvs, ctxt;
+	var dragok = false;
+	var fromX, fromY, toX, toY; //click event locations
+
+	function imgSelected(imageId){
+		var img = $('img#'+imageId); 
+		//alert(img.attr('src'));
+		var imagePath = img.attr('src'); 
+		loadImage(imagePath);
+		updateFloorMap(imagePath);
+		if($('#map_coords').val()){
+			updateRect($('#map_coords').val());
+		}
+	}
+	
+	function loadImage(imgPath){
+		cnvs = $('#mapCanvas')[0];
+		if(cnvs.getContext){
+			ctxt = cnvs.getContext('2d');
+			//load image in canvas				
+			var img = new Image();					
+			img.src = imgPath;
+			img.onload = function(){
+						//resize canvas container
+						/*var divStyle = 'width: '+img.width+'; height: '+img.height;
+						$('#drawArea').attr('style', divStyle);*/
+						//resize canvas to fit image
+						cnvs.width = img.width;				
+						cnvs.height = img.height;						
+						ctxt.drawImage(img, 0, 0, img.width, img.height);
+						//ctxt.stroke();
+						//update "global" state
+						imgW = img.width;
+						imgH = img.height;
+						initRectCanvas(imgW, imgH);
+					}
+		}				
+	}
+	
+	function initRectCanvas(w, h){
+		cnvs = $('#rectCanvas')[0];
+		cnvs.width = w;				
+		cnvs.height = h;
+		cnvs.onmousedown = btDown;
+		cnvs.onmouseup = btUp;
+		ctxt = cnvs.getContext('2d');
+	}
+	
+	function updateFloorMap(imgPath){
+		var filename = imgPath.split('/').pop();
+		$('#map_url').val(filename);
+	}
+	
+	function drawSquare(){
+		clear();
+		//fill with semi-transparent red
+		ctxt.globalAlpha = 0.5;					
+		ctxt.fillStyle="#FF0000";
+		var w = Math.abs(toX - fromX);
+		var h = Math.abs(toY - fromY);
+		ctxt.fillRect(fromX,fromY,w,h); //only draws to right and down, I know.
+
+	}
+
+	function clear() {
+		//var msg = "Image w: " + imgW + "h: " + imgH;
+		//alert(msg);
+		ctxt.clearRect(0, 0, imgW, imgH);
+	}
+
+	function btUp(e) {
+		dragok = false;
+		cnvs.onmousemove = null;		
+	}
+
+	function btDown(e) {
+		var pos = getElementAbsolutePos(cnvs);
+		if(e.pageX > pos.x && e.pageX < pos.x + cnvs.width 
+			&& e.pageY > pos.y && e.pageY < pos.y + cnvs.height) {
+			fromX = e.pageX - Math.round(pos.x);
+			fromY = e.pageY - Math.round(pos.y);
+			dragok = true;
+			cnvs.onmousemove = mouseMove;
+			/*var msg = "in! x: " + fromX + " y: " + fromY; 
+			alert(msg)*/				
+		}
+	}
+
+	function mouseMove(e) {
+		if(dragok) {
+			var pos = getElementAbsolutePos(cnvs);
+			toX = e.pageX - Math.round(pos.x);
+			toY = e.pageY - Math.round(pos.y);
+			drawSquare();
+			logMapCoords();
+		}
+	}
+			
+	function logMapCoords(){
+		var w = toX - fromX;
+		var h = toY - fromY;
+		var coords = fromX+'#'+fromY+'#'+w+'#'+h;
+		$('#map_coords').val(coords);
+	}	
+	
+	function updateRect(val){
+		var vals = val.split('#');
+		fromX = parseInt(vals[0]);
+		fromY = parseInt(vals[1]);
+		toX = fromX + parseInt(vals[2]);
+		toY = fromY + parseInt(vals[3]);
+		drawSquare();
+	}		
+			
+</script>
 </head>
 <body>			
 	<div id="formDiv" class="container" height="800px">
@@ -115,6 +239,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		<form action="<?=basename($_SERVER['PHP_SELF']) ?>" method="POST">
 		<input type="hidden" name="id" value="<?=$stack['id']?>" />
 		<input type="hidden" name="floor_id" value="<?=$stack['floor_id']?>" />
+		<div >
+		<a href="index.php">Back to stacks list</a>	
 		<fieldset>
 			<p>
 				<label>Number</label><input value="<?= $stack['number'] ?>" name="number" class="text" />
@@ -128,12 +254,49 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 			<p>
 				<label>URL</label><input value="<?= $stack['url'] ?>" name="url" size="60" class="text">
 			</p>			
-		<input type="submit" name="btSave" value="Save">
-		<input type="reset" value="Reset">
+			<p>
+				<label>Floor Map</label><input value="<?= $stack['map_url'] ?>" id="map_url" 
+				name="map_url" size="60" class="text" readonly="readonly" >
+			</p>
+			<p>
+				<div>
+					<img id="terrel_basement" title="Basement" class="selectable"
+						src="../images/terrel_basement.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<img id="img_ground" title="Ground Floor"  class="selectable"
+						src="../images/terrel_ground.jpg" width="100" onclick="imgSelected(this.id)"/>					
+					<img id="img_holland_1st" title="1st Floor"  class="selectable"
+						src="../images/holland_1st.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<img id="img_holland_2nd" title="2nd Floor" class="selectable"
+						src="../images/holland_2nd.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<img id="img_holland_3rd" title="3rd Floor" class="selectable"
+						src="../images/holland_3rd.jpg" width="100" onclick="imgSelected(this.id)"/>								
+				</div>
+			</p>
+			<p>
+				<label>Map Coords</label><input value="<?= $stack['map_coords'] ?>" id="map_coords"
+				name="map_coords" size="60" class="text" onchange="updateRect(this.value)">
+			</p>
+			
+			<div style="clear: both"></div>
+			<div>
+				<input type="submit" name="btSave" value="Save">
+				<input type="reset" value="Reset">
+			</div>
+		
 		</fieldset>
+		</div>
+		<div>
+			<div  id="drawArea" style="position: relative">
+				<canvas id="mapCanvas" style="position: absolute; left: 0; top: 0; z-index: 0">
+					Your browser does not support canvas
+				</canvas>
+				<canvas id="rectCanvas" style="position: absolute; left: 0; top: 0; z-index: 1">
+					Your browser does not support canvas
+				</canvas>
+			</div>
+			</div>
 		</form>
-		<br>
-		<a href="index.php">Back to stacks list</a>
+		<br>		
 	</div>	
 </body>
 </html>
