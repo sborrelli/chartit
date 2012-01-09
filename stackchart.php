@@ -241,7 +241,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				displayStacks($db, $page_size, 3, "terrell_bas");				
 				?>				
 			</div>
-			<h2><a href="#" id="terrell_bas_hd" class="acc_head" >Basement<br>Dewey Call Numbers: 001-999</a></h2>
+			<h2><a href="#" id="terrell_bas_hd" class="acc_head" >Basement<br>Dewey Call Numbers: 001 - 999</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 4, "terrell_bas");				
@@ -266,19 +266,19 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				displayStacks($db, $page_size, 6, "holland_2nd");				
 				?>				
 			</div>
-			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Call Numbers: PS 3302- Z </a></h2>
+			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Call Numbers: PS 3302 - Z </a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 7, "holland_3rd");				
 				?>				
 			</div>
-			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Jackson Documents </a></h2>
+			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor - Jackson Docs<br>HOLDOC MA 1 - HOLDOC UNY 72 SKJ</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 8, "holland_3rd");			
 				?>					
 			</div>
-			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>US Government Documents</a></h2>
+			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor - US Gov Docs<br>HOLDOC A 1.1/3 - HOLDOC Z999</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 9, "holland_3rd");			
