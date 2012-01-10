@@ -242,6 +242,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		<div >
 		<a href="index.php">Back to stacks list</a>	
 		<fieldset>
+			<div style="float: left" class="span-14">
 			<p>
 				<label>Number</label><input value="<?= $stack['number'] ?>" name="number" class="text" />
 			</p>									
@@ -260,17 +261,32 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 			</p>
 			<p>
 				<div>
+					<div style="float:left; vertical-align: bottom">
 					<img id="terrel_basement" title="Basement" class="selectable"
 						src="../images/terrel_basement.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<br>Basement	
+					</div>	
+					<div style="float:left">					
 					<img id="img_ground" title="Ground Floor"  class="selectable"
-						src="../images/terrel_ground.jpg" width="100" onclick="imgSelected(this.id)"/>					
+						src="../images/terrel_ground.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<br>Ground	
+					</div>
+					<div style="float:left">						
 					<img id="img_holland_1st" title="1st Floor"  class="selectable"
 						src="../images/holland_1st.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<br>First	
+					</div>
+					<div style="float:left">	
 					<img id="img_holland_2nd" title="2nd Floor" class="selectable"
 						src="../images/holland_2nd.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<br>Second	
+					</div>
+					<div >	
 					<img id="img_holland_3rd" title="3rd Floor" class="selectable"
-						src="../images/holland_3rd.jpg" width="100" onclick="imgSelected(this.id)"/>								
-				</div>
+						src="../images/holland_3rd.jpg" width="100" onclick="imgSelected(this.id)"/>
+					<br>Third	
+					</div>									
+				</div>				
 			</p>
 			<p>
 				<label>Map Coords</label><input value="<?= $stack['map_coords'] ?>" id="map_coords"
@@ -282,7 +298,20 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 				<input type="submit" name="btSave" value="Save">
 				<input type="reset" value="Reset">
 			</div>
-		
+		</div>
+		<div class="info span-8 " style="float: left">
+			<ul>
+			<li><strong>Number</strong>: stack number</li>			
+			<li><strong>Begins with</strong>: first call number. If empty, type "Empty".</li>
+			<li><strong>Begins with</strong>: last call number. If empty, type "Empty".</li>
+			<li><strong>URL</strong>: link to html map page. Only relevant if Map Coords is empty.</li>
+			<li><strong>Floor Map</strong>: Name of the selected image. It is filled when one 
+				of the floor images is selected. Non-editable by hand.</li>
+			<li><strong>Map Coords</strong>: Coordinates (x, y, width, height) for the highlighted rectangle 
+				on the image select above. It is calculated automatically
+				when drawing, and can also be edited directly.</li>
+			</ul>
+		</div>
 		</fieldset>
 		</div>
 		<div>
