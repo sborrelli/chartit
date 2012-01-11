@@ -120,26 +120,33 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 			while ($i * $page_size < $nstacks) {
 				//every $page_size records, there's a new section
 				$first_row_index = $i * $page_size;
-				
-				$query = sqlite_query($db, "SELECT begins_with 
-					  				FROM Stacks 
-					  				WHERE floor_id = $floor_id 
-					  				AND begins_with not like 'Empty'
-					  				LIMIT 1 OFFSET $first_row_index"); 
-				$res = sqlite_fetch_array($query);					
-				$begins = $res[0];
+				$empty_offset = 0;
+				do {
+					$offset = $first_row_index + $empty_offset;
+					$query = sqlite_query($db, "SELECT begins_with 
+						  				FROM Stacks 
+						  				WHERE floor_id = $floor_id					  				
+						  				LIMIT 1 OFFSET $offset"); 
+					$res = sqlite_fetch_array($query);					
+					$begins = $res[0];
+					$empty_offset++; //just in case the stack number is "empty"					
+				} while (strcasecmp($begins, "empty")==0 and $empty_offset < $page_size);
 				if (($i + 1) * $page_size <= $nstacks) {
 					$last_row_index = ($i + 1) * $page_size - 1;
 				} else {
 					$last_row_index = $nstacks - 1;
 				}
-				
-				$query = sqlite_query($db, "SELECT ends_with 
-									FROM Stacks 
-									WHERE floor_id = $floor_id 
-									LIMIT 1 OFFSET $last_row_index"); 
-				$res = sqlite_fetch_array($query);					
-				$ends = $res[0];
+				$empty_offset = 0;
+				do {
+					$offset = $last_row_index - $empty_offset;
+					$query = sqlite_query($db, "SELECT ends_with 
+										FROM Stacks 
+										WHERE floor_id = $floor_id 
+										LIMIT 1 OFFSET $offset"); 
+					$res = sqlite_fetch_array($query);					
+					$ends = $res[0];
+					$empty_offset++;
+				} while (strcasecmp($ends, "empty")==0 and $offset > $first_row_index);
 
 				/*$row_title = "<span style=\"display:inline-block; width: 10em\">$begins</span>
 							to <span style=\"display: inline-block; position: relative; left: 2em\"> $ends</span>";*/
