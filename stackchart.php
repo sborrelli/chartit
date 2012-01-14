@@ -1,7 +1,7 @@
 <?
 function is_mobile(){
-	//$useragent=$_SERVER['HTTP_USER_AGENT'];
-	print $useragent;
+	$useragent=$_SERVER['HTTP_USER_AGENT'];
+	//print $useragent;
 	if(preg_match('/android.+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|
 		iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|opera m(ob|in)i|palm( os)?|phone|
 		p(ixi|re)\/|plucker|pocket|psp|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|
