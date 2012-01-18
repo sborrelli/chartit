@@ -33,7 +33,7 @@ h1 {
 margin: 0;
 /*border-top: 4px solid #000;*/
 /*background-color: #990033; */   /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
-border-bottom: 3px double #000;
+/*border-bottom: 3px double #000;*/
 }
 h2 {
 font-size: 30px;
@@ -92,6 +92,9 @@ tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 #terrell_1st_hd {background-color: #32B7CF; color: #FFFFFF}
 #terrell_gnd_hd {background-color: #ED7B24; color: #FFFFFF}
 #terrell_bas_hd {background-color: #B5C034; color: #FFFFFF}
+#terrell_bas_hd_dew {background-color: #B5C034; color: #FFFFFF}
+#holland_3rd_hd_us {background-color: #981D32; color: #FFFFFF}
+#holland_3rd_hd_jack {background-color: #981D32; color: #FFFFFF}
 
 #holland_1st_sh {padding-left: 1em; color: #FFFFFF; background-color: #5E6B72; margin-bottom: 2px}
 #holland_2nd_sh {padding-left: 1em; color: #FFFFFF; background-color: #255981}

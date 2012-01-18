@@ -26,8 +26,33 @@ function is_mobile(){
 		webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|xda(\-|2|g)|yas\-|your|zeto|zte\-/i',substr($useragent,0,4)))
 		return true;
 	return false;
-}
+	}
 
+	function openSectionHeader($request){
+		if (isset($request['openId'])){
+	  		switch($request['openId']){
+				case 1: 
+					return 'terrell_1st_hd';
+				case 2: 
+					return 'terrell_gnd_hd';
+				case 3: 
+					return 'terrell_bas_hd';
+				case 4: 
+					return 'terrell_bas_hd_dew';
+				case 5: 
+					return 'holland_1st_hd';
+				case 6: 
+					return 'holland_2nd_hd';
+				case 7: 
+					return 'holland_3rd_hd';
+				case 8: 
+					return 'holland_3rd_hd_jack';
+				case 9: 
+					return 'holland_3rd_hd_us';				
+	  		}			
+		}
+		return '';
+	}
 ?>
 <!-- FRONTIER -->
 
@@ -66,6 +91,12 @@ if(!is_mobile()){
 
 ?> 
 <script language="JavaScript"><!--
+
+	function openHeader(elementId){
+		var h = $('#'+elementId);
+		h.trigger('click');
+	}
+	
 	function Return () {    
     	history.go(-2);
     }
@@ -95,6 +126,13 @@ $(function() {
       initShow : "div.shown", showSpeed: 200, hideSpeed: 400
     });
   $("html").removeClass("js");
+  <?
+  	//check whether we need to open a section after load
+  	$h_id = openSectionHeader($_REQUEST);
+	if ($h_id){
+  		print "openHeader('$h_id');";
+	}  
+  ?>  
 });
   
   
@@ -288,7 +326,7 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				displayStacks($db, $page_size, 3, "terrell_bas");				
 				?>				
 			</div>
-			<h2><a href="#" id="terrell_bas_hd" class="acc_head" >Basement<br>Dewey Call Numbers: 001 - 999</a></h2>
+			<h2><a href="#" id="terrell_bas_hd_dew" class="acc_head" >Basement<br>Dewey Call Numbers: 001 - 999</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 4, "terrell_bas");				
@@ -319,13 +357,13 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 				displayStacks($db, $page_size, 7, "holland_3rd");				
 				?>				
 			</div>
-			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor - Jackson Docs<br>HOLDOC MA 1 - HOLDOC UNY 72 SKJ</a></h2>
+			<h2><a href="#" id="holland_3rd_hd_jack" class="acc_head">3rd Floor - Jackson (State/Int’l) Docs<br>HOLDOC MA 1 - HOLDOC UNY 72 SKJ</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 8, "holland_3rd");			
 				?>					
 			</div>
-			<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor - US Gov Docs<br>HOLDOC A 1.1/3 - HOLDOC Z999</a></h2>
+			<h2><a href="#" id="holland_3rd_hd_us" class="acc_head">3rd Floor - US Gov Docs<br>HOLDOC A 1.1/3 - HOLDOC Z999</a></h2>
 			<div class="floor">
 				<?
 				displayStacks($db, $page_size, 9, "holland_3rd");			
@@ -336,82 +374,11 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 	</div>	
 </div>
 <div style="height:10px; clear: both"></div>
-<!--
-<div id="grayDiv" class="span-9">
-	<div id="mapDiv" class="shown">
-		<h2><a href="#" id="call_map" class="acc_head" >Holland &amp; Terrell Call Number Map</a></h2>
-		<div>
-			<div align="center">
-				<table border="1" cellpadding=2 cellspacing="0">
-					<tbody class="call_map">
-						<tr>
-							<td width="267">A - DC </td>
-							<td width="145">Terrel 1st</td>
-						</tr>
-						<tr>
-							<td>DD - HB 149 Z9 </td>
-							<td>Terrel Ground</td>
-						</tr>
-						<tr>
-							<td>HB 150- HV 5999 </td>
-							<td>Terrel Basement</td>
-						</tr>								
-						<tr>
-							<td width="280">HV 6000 - KZZ</td>
-							<td width="143">Holland First</td>
-						</tr>
-						<tr>
-							<td>L - PS 3299 </td>
-							<td>Holland Second</td>
-						</tr>
-						<tr>
-							<td>PS 3300 - Z</td>
-							<td>Holland Third</td>
-						</tr>
-						<tr>
-							<td>Jackson Docs </td>
-							<td>Holland Third</td>
-						</tr>
-						<tr>
-							<td>US Docs A - Y </td>
-							<td>Holland Third</td>
-						</tr>								
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>	
-</div>
--->
+
 <div class="span-18 last">
 	<div id="otherDiv">
 		<h2><a href="#" id="other_loc" class="acc_head" > Other Locations in The Library</a></h2>
-			<div>
-				<!--
-				<div class="span-9">
-					<table border="1" cellpadding=2 cellspacing="0">
-						<tr>
-							<td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
-						</tr>
-						<tr>
-							<td width="317"> Cougar Copies</td>
-							<td width="122">1st Floor</td>
-						</tr>
-						<tr>
-							<td width="317"> Microforms</td>
-							<td width="122">1st Floor</td>
-						</tr>
-						<tr>
-							<td width="317"> Maproom</td>
-							<td width="122">1st Floor</td>
-						</tr>
-						<tr>
-							<td width="317"> Oversize</td>
-							<td width="122">3rd Floor</td>
-						</tr>
-			  		</table>
-				</div>
-				-->
+			<div>				
 				<div>				  
 				  <table border="1" cellpadding=2 cellspacing="0">
 			        <tr>
@@ -455,28 +422,19 @@ function displayStacks($db, $page_size, $floor_id, $element_id){
 	}
 ?>
 <div style="clear: both"></div>
-<!-- 
-<h3 align="center">WSU Libraries &nbsp;<input type=BUTTON NAME=BtnName VALUE='RETURN' onClick='Return()'></h4>
-<div id=lifoot>
-<center>
-<script type="text/javascript" src="http://www.wsulibs.wsu.edu/electric/library_lingo/javascripts/footers/Footer.js"></script>
-</center>
-</div>
--->
 <!-- Start of StatCounter Code for Default Guide -->
 <script type="text/javascript">
-var sc_project=7177095; 
-var sc_invisible=1; 
-var sc_security="d916318d"; 
+var sc_project=7577748;
+var sc_invisible=1;
+var sc_security="0e357b41";
 </script>
 <script type="text/javascript"
 src="http://www.statcounter.com/counter/counter.js"></script>
-<noscript><div class="statcounter"><a title="godaddy
-statistics"
-href="http://statcounter.com/godaddy_website_tonight/"
+<noscript><div class="statcounter"><a title="tumblr hit
+counter" href="http://statcounter.com/tumblr/"
 target="_blank"><img class="statcounter"
-src="http://c.statcounter.com/7177095/0/d916318d/1/"
-alt="godaddy statistics"></a></div></noscript>
+src="http://c.statcounter.com/7577748/0/0e357b41/1/"
+alt="tumblr hit counter"></a></div></noscript>
 <!-- End of StatCounter Code for Default Guide -->
 </div>
 <!-- INCLUDE FOOTER FILE HERE        Do Not Edit                                   -->
