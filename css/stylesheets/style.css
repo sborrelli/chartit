@@ -26,6 +26,9 @@ a:visited
 .alignright {margin-top: 0; text-align: right;}
 .small {font-size: .9em;}
 .return {position: absolute; top: 0; right: 0; text-align: right; padding: .5em;}
+.separator{clear: both; height: 5px}
+
+
 /*******************************************************************************
                        Positioning rules
 *******************************************************************************/
@@ -75,6 +78,8 @@ tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 .acc_head {padding: 8px 0px 8px 20px; background-color: #A0A0A0}
 #call_map {color: #FFFFFF}
 #other_loc {color: #FFFFFF}
+#locClassification {color: #FFFFFF}
+
 
 /*.sub_header {color: #FFFFFF; background-color: #32B7CF}*/
 

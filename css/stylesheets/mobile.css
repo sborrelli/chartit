@@ -1,0 +1,5 @@
+h2 {padding-bottom: 6px;}
+
+.mobile_con {overflow: hidden}
+div.mobile_half {float: left; margin: auto; width: 49%; padding-right: 6px; padding-left: 2px; }
+div.mobile_full {float: left; margin: auto; width: 98%; padding-left: 2px;}
