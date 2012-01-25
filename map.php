@@ -1,4 +1,5 @@
 <?
+require 'common.php';
 //get rectangle parameters from request
 $image = $_REQUEST['floor'];
 $x = $_REQUEST['posx'];
@@ -18,15 +19,23 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header1.js"></script> 
 	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header2.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<?
+	if (is_IE()){ //canvas alternative for IE7
+	?>	
+	<script type="text/javascript" src="javascripts/excanvas/excanvas.compiled.js"></script>  
+	<?
+	}
+	?>
 		<script type="text/javascript">
 			function drawStuff(){
 				var cnvs = $('#planCanvas')[0];
-				if(cnvs.getContext){
+				if(cnvs.getContext){					
 					var ctxt = cnvs.getContext('2d');
 					//load image in canvas				
-					var img = new Image();					
-					img.src = "images/<?=$image?>";
+					var img_src = "images/<?=$image?>";
+					var img = new Image();										
+					img.src = img_src;
 					//img.usemap = "#Map";
 					img.onload = function(){				
 						ctxt.drawImage(img, 0, 0, img.width, img.height);
@@ -39,8 +48,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 						var w = <?=$w?>;
 						ctxt.fillRect(x,y,w,h);					
 						ctxt.stroke();						
-					}	
+					}
+					//cnvs.loadImages(img_src);						
 				}
+				
 			}
 			$(document).ready(drawStuff);
 		</script>
@@ -59,7 +70,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 </p>
 	
 <canvas id="planCanvas" width="575" height="451">
-<p>Your browser doesn't support canvas.</p>
+<script type="text/javascript">
+	document.write("<p>Your browser doesn't support canvas.</p>");
+</script>
 </canvas>	
 
 <div class="subclass">
