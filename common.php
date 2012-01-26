@@ -37,4 +37,116 @@ function is_mobile(){
 	return false;
 	}
 
+function displayStacks($db, $page_size, $floor_id, $element_id){
+	$i = 0;
+
+			//$res = $db -> query("SELECT count(*) filas FROM Stacks where floor_id = $floor_id") -> fetchArray();
+			//using sqlite2 here
+			$query = sqlite_query($db, "SELECT count(*) filas FROM Stacks where floor_id = $floor_id"); 
+			$res = sqlite_fetch_array($query);
+			$nstacks = $res['filas'];
+			//print all rows in several accordioned tables
+			while ($i * $page_size < $nstacks) {
+				//every $page_size records, there's a new section
+				$first_row_index = $i * $page_size;
+				$empty_offset = 0;
+				do {
+					$offset = $first_row_index + $empty_offset;
+					$query = sqlite_query($db, "SELECT begins_with 
+						  				FROM Stacks 
+						  				WHERE floor_id = $floor_id					  				
+						  				LIMIT 1 OFFSET $offset"); 
+					$res = sqlite_fetch_array($query);					
+					$begins = $res[0];
+					$empty_offset++; //just in case the stack number is "empty"					
+				} while (strcasecmp($begins, "empty")==0 and $empty_offset < $page_size);
+				if (($i + 1) * $page_size <= $nstacks) {
+					$last_row_index = ($i + 1) * $page_size - 1;
+				} else {
+					$last_row_index = $nstacks - 1;
+				}
+				$empty_offset = 0;
+				do {
+					$offset = $last_row_index - $empty_offset;
+					$query = sqlite_query($db, "SELECT ends_with 
+										FROM Stacks 
+										WHERE floor_id = $floor_id 
+										LIMIT 1 OFFSET $offset"); 
+					$res = sqlite_fetch_array($query);					
+					$ends = $res[0];
+					$empty_offset++;
+				} while (strcasecmp($ends, "empty")==0 and $offset > $first_row_index);
+
+				/*$row_title = "<span style=\"display:inline-block; width: 10em\">$begins</span>
+							to <span style=\"display: inline-block; position: relative; left: 2em\"> $ends</span>";*/
+				$sub_header_id = $element_id . "_sh";
+				print " <span >						
+							<a href='#'>							
+							<table id='$sub_header_id' class = 'sub_header'>
+								<tr>
+									<td width='120px' class='td_sub_head'>$begins</td>
+									<td width='1em' class='td_sub_head'>to</td>
+									<td class='td_sub_head'>$ends</td>
+								</tr>
+							</table>
+							</a>
+						</span>
+						<div>
+							<table cellspacing='0' cellpadding='2'>
+							<tbody id='$element_id'>
+								<tr>
+				                  <td width='68'><b>Stack #</b></td>
+				                  <td width='152'><b>Begins with:</b></td>
+				                  <td width='20'>&nbsp;</td>
+				                  <td width='149'><b>Ends with:</b> </td>
+						        </tr>	";
+				//}
+				//actual rows
+				
+				$query = sqlite_query($db, "SELECT * 
+											FROM Stacks s
+											WHERE floor_id = $floor_id 
+											ORDER BY s.number
+											LIMIT $page_size
+											OFFSET $first_row_index"); 
+				
+				if($last_error_code = sqlite_last_error($db)) {
+				//Do not run a foreach as its not multi-dimensional array
+					$Error = sqlite_error_string($last_error_code);
+					throw new Exception($Error); //Driver Specific Error
+				}
+				while ($row = sqlite_fetch_array($query)) {	
+					print "<tr><td><div align=\"center\">";
+					$url = $row['map_url'];
+					if (strlen($url) > 0) {
+						$map_coords = $row['map_coords'];
+						$params = explode("#", $map_coords);
+						if(count($params) == 4){
+							$url = "map.php?floor=".$url."&posx=".$params[0]."&posy=".$params[1]."&width=".$params[2]."&height=".$params[3];
+						} else {
+							$url = $row['number_url'];
+						}
+					} else {
+						$url = $row['number_url'];						
+					}
+					if (strlen($url) > 0) {
+							print "<a href='$url' style='text-decoration: underline'>";
+					}
+					print $row['number'];
+					if (strlen($url) > 0) {
+						print "</a>";
+					}
+					print "</div></td>";
+					print "<td>" . $row['begins_with'] . "</td>";
+					print "<td width=\"20\">to</td>";
+					print "<td>" . $row['ends_with'] . "</td></tr>";
+				}
+				//ending a section
+				print "</tbody></table>";
+				print "</div>";
+				print "<div class='stacks_separator'>&nbsp;</div>";
+				$i++;
+			}
+}
+
 ?>
