@@ -122,7 +122,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<!-- This is the Common Header -->
 	<!-- header script includes </head> and <body> tags -->
 	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header1.js"></script>
-	<script type="text/javascript" src="javascripts/headers/Header2.js"></script>
+	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header2.js"></script>
 	<!-- END HEADER -->
 <? } else {	//include some mobile specific styling ?>
 	<link href="css/stylesheets/mobile.css" rel="stylesheet" type="text/css" />
