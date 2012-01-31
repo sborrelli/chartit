@@ -38,9 +38,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<!--[if lt IE 8]>
 	    <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
 	  <![endif]-->
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<link href="javascripts/jqueryui/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	<script src="javascripts/jquery/jquery-1.5.min.js"></script>
+	<script src="javascripts/jqueryui/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="javascripts/jquery.nestedAccordion.js"></script>
 	<link href="css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />
 	<link href="css/stylesheets/style.css" rel="stylesheet" type="text/css" />

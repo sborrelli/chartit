@@ -17,9 +17,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<link href="css/stylesheets/maps.css" rel="stylesheet" type="text/css" />
 	<title>Holland &amp; Terrell Stack Chart</title>
 	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header1.js"></script> 
-	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header2.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header2.js"></script>	
+	<script src="javascripts/jquery/jquery-1.5.min.js"></script>
+	<script src="javascripts/jqueryui/jquery-ui.min.js"></script>
 	<?
 	if (is_IE()){ //canvas alternative for IE7
 	?>	
