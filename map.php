@@ -15,7 +15,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />	
 	<link href="css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />
 	<link href="css/stylesheets/maps.css" rel="stylesheet" type="text/css" />
-	<title>Holland 1st Floor</title>
+	<title>Holland &amp; Terrell Stack Chart</title>
 	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header1.js"></script> 
 	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header2.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
