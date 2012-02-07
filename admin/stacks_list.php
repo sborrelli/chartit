@@ -1,3 +1,4 @@
+<? require_once ("_common.php"); ?>
 <?
 $floor = $_REQUEST['floor'];
 if($floor){
@@ -7,7 +8,7 @@ if($floor){
 			ORDER BY number"; 
 }
 if(!isset($db)){
-	if(!($db=sqlite_open("../db/stackchart.sqlite2.db"))){
+	if(!($db=sqlite_open(DB_PATH))){
 		echo "<h2> Database Error </h2>";
 		die();
 	}

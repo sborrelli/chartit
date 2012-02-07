@@ -1,3 +1,4 @@
+<? require_once ("_common.php"); ?>
 <!DOCTYPE html 
 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -41,7 +42,7 @@ $q_stacks = "";
 ?>
 <body>
 	<?
-	if(!($db=sqlite_open("../db/stackchart.sqlite2.db")))
+	if(!($db=sqlite_open(DB_PATH)))
 	{
 		echo "<h2> Database Error </h2>";
 		die();

@@ -1,0 +1,1 @@
+<?phpdefine("DB_PATH", "../db/stackchart.sqlite2.db")?>

@@ -1,5 +1,6 @@
+<? require_once ("_common.php"); ?>
 <?
-if(!($db=sqlite_open("../db/stackchart.sqlite2.db")))
+if(!($db=sqlite_open(DB_PATH)))
 	{
 		echo "<h2> Database Error </h2>";
 		die();
