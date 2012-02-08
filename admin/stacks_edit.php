@@ -101,16 +101,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-<link rel="stylesheet" href="../css/blueprint/screen.css" type="text/css" media="screen, projection">
-<link rel="stylesheet" href="../css/blueprint/print.css" type="text/css" media="print">
+<link rel="stylesheet" href="<?=$public_path?>/css/blueprint/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="<?=$public_path?>/css/blueprint/print.css" type="text/css" media="print">
 <!--[if lt IE 8]>
     <link rel="stylesheet" href="../css/blueprint/ie.css" type="text/css" media="screen, projection">
   <![endif]-->
-<link href="../css/stylesheets/style.css" rel="stylesheet" type="text/css" />
-<link href="../css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>  
+<link href="<?=$public_path?>/css/stylesheets/style.css" rel="stylesheet" type="text/css" />
+<link href="<?=$public_path?>/css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />  
+<script src="<?=$public_path?>/javascripts/jquery/jquery-1.5.min.js"></script>  
 <title>Holland & Terrell Stack Chart Admin</title>
-<script type="text/javascript" src="../javascripts/position.js"></script>
+<script type="text/javascript" src="<?=$public_path?>/javascripts/position.js"></script>
 <script type="text/javascript">
 
 	var imgH, imgW;
@@ -264,27 +264,27 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 				<div>
 					<div style="float:left; vertical-align: bottom">
 					<img id="terrel_basement" title="Basement" class="selectable"
-						src="../images/terrel_basement.jpg" width="100" onclick="imgSelected(this.id)"/>
+						src="<?=$public_path?>/images/terrel_basement.jpg" width="100" onclick="imgSelected(this.id)"/>
 					<br>Basement	
 					</div>	
 					<div style="float:left">					
 					<img id="img_ground" title="Ground Floor"  class="selectable"
-						src="../images/terrel_ground.jpg" width="100" onclick="imgSelected(this.id)"/>
+						src="<?=$public_path?>/images/terrel_ground.jpg" width="100" onclick="imgSelected(this.id)"/>
 					<br>Ground	
 					</div>
 					<div style="float:left">						
 					<img id="img_holland_1st" title="1st Floor"  class="selectable"
-						src="../images/holland_1st.jpg" width="100" onclick="imgSelected(this.id)"/>
+						src="<?=$public_path?>/images/holland_1st.jpg" width="100" onclick="imgSelected(this.id)"/>
 					<br>First	
 					</div>
 					<div style="float:left">	
 					<img id="img_holland_2nd" title="2nd Floor" class="selectable"
-						src="../images/holland_2nd.jpg" width="100" onclick="imgSelected(this.id)"/>
+						src="<?=$public_path?>/images/holland_2nd.jpg" width="100" onclick="imgSelected(this.id)"/>
 					<br>Second	
 					</div>
 					<div >	
 					<img id="img_holland_3rd" title="3rd Floor" class="selectable"
-						src="../images/holland_3rd.jpg" width="100" onclick="imgSelected(this.id)"/>
+						src="<?=$public_path?>/images/holland_3rd.jpg" width="100" onclick="imgSelected(this.id)"/>
 					<br>Third	
 					</div>									
 				</div>				

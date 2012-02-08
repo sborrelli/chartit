@@ -1,1 +1,1 @@
-<?phpdefine("DB_PATH", "../db/stackchart.sqlite2.db")?>
+<?phpdefine("DB_PATH", "../db/stackchart.sqlite2.db");$public_path = "..";?>
