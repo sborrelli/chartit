@@ -9,7 +9,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <link rel="stylesheet" href="<?=$public_path?>/css/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="<?=$public_path?>/css/blueprint/print.css" type="text/css" media="print">
 <!--[if lt IE 8]>
-    <link rel="stylesheet" href="../css/blueprint/ie.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="<?=$public_path?>/css/blueprint/ie.css" type="text/css" media="screen, projection">
   <![endif]-->
 <link href="<?=$public_path?>/css/stylesheets/style.css" rel="stylesheet" type="text/css" />
 <link href="<?=$public_path?>/css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />
