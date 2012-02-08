@@ -301,17 +301,27 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 			</div>
 		</div>
 		<div class="info span-8 " style="float: left">
-			<ul>
-			<li><strong>Number</strong>: stack number</li>			
-			<li><strong>Begins with</strong>: first call number. If empty, type "Empty".</li>
-			<li><strong>Begins with</strong>: last call number. If empty, type "Empty".</li>
-			<li><strong>URL</strong>: link to html map page. Only relevant if Map Coords is empty.</li>
-			<li><strong>Floor Map</strong>: Name of the selected image. It is filled when one 
-				of the floor images is selected. Non-editable by hand.</li>
-			<li><strong>Map Coords</strong>: Coordinates (x, y, width, height) for the highlighted rectangle 
-				on the image select above. It is calculated automatically
-				when drawing, and can also be edited directly.</li>
-			</ul>
+			<fieldset>
+				<legend>Fields:</legend>
+				<ul>
+					<li><strong>Number</strong>: stack number</li>			
+					<li><strong>Begins with</strong>: first call number. If empty, type "Empty".</li>
+					<li><strong>Begins with</strong>: last call number. If empty, type "Empty".</li>
+					<li><strong>URL</strong>: link to html map page. Only relevant if Map Coords is empty.</li>
+					<li><strong>Floor Map</strong>: Name of the selected image. It is filled when one 
+						of the floor images is selected. Non-editable by hand.</li>
+					<li><strong>Map Coords</strong>: Coordinates (x, y, width, height) for the highlighted rectangle 
+						on the image select above. It is calculated automatically
+						when drawing, and can also be edited directly.</li>
+				</ul>
+			</fieldset>
+			<fieldset>
+				<legend>Buttons</legend>
+				<ul>
+					<li><strong>Save</strong>: Saves the stack into the database.</li>
+					<li><strong>Reset</strong>: Restores the values from the database.</li>
+				</ul>
+			</fieldset>			
 		</div>
 		</fieldset>
 		</div>
@@ -327,7 +337,14 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 			</div>
 		</form>
 		<br>		
-	</div>	
+	</div>
+<div class="container">
+<div style="height: 4em">			
+	
+<!-- INCLUDING FOOTER FILE HERE        Do Not Edit                                   -->
+<script language="JavaScript" src="<?=$public_path?>/javascripts/footers/li_footer.js" type="text/javascript"></script> 
+<!-- END FOOTER HEADER FILE    -->
+</div>		
 </body>
 </html>
 <?

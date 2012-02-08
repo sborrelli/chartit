@@ -1,12 +1,15 @@
 <? require_once ("_common.php"); ?>
 <?
 $floor = $_REQUEST['floor'];
-if($floor){
-	$q_str = "SELECT id, number, begins_with, ends_with
-			FROM Stacks
-			WHERE floor_id = $floor
-			ORDER BY number"; 
+if(!$floor){
+	$floor = "-1";
 }
+//echo "floor: ".$floor;
+$q_str = "SELECT id, number, begins_with, ends_with
+		FROM Stacks
+		WHERE floor_id = $floor
+		ORDER BY number"; 
+
 if(!isset($db)){
 	if(!($db=sqlite_open(DB_PATH))){
 		echo "<h2> Database Error </h2>";
@@ -24,7 +27,7 @@ if(!isset($db)){
 			<th>To Number</th>
 			<th colspan="2">Modify</th>		
 			<?
-			$query = sqlite_query($db, $q_str);
+				$query = sqlite_query($db, $q_str);
 				while ($row = sqlite_fetch_array($query)){
 					print "<tr>";
 					print "<td>".$row['number']."</td><td>".$row['begins_with']."</td><td>".$row['ends_with']."</td>";

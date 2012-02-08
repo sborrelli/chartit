@@ -17,11 +17,14 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <title>Holland & Terrell Stack Chart Admin</title>
 <script type="text/javascript">
 	function loadStacks(elem){
-		//alert($('#'+elem.id).val());
 		var floor = $('#'+elem.id).val();
-		var url = "stacks_list.php";
-		var params = {'floor': floor };		
-		$('#stacks').load(url, params);
+		if(floor){
+			var url = "stacks_list.php";
+			var params = {'floor': floor };		
+			$('#stacks').load(url, params);
+		} else {
+			$('#stacks').empty();
+		}
 	}
 	
 	function deleteStack(stackId){
@@ -38,7 +41,6 @@ $q_library = "SELECT l.id, l.name library, f.id floor_id, f.name floor
 			FROM libraries l join floors f on l.id = f.library_id
 			ORDER BY l.name, f.id";
 $q_stacks = "";			
-//$q_floor = "SELECT id, name FROM Floors WHERE 1";
 ?>
 <body>
 	<?
@@ -67,5 +69,13 @@ $q_stacks = "";
 			</div>
 			<div id="stacks" height="800px"></div>
 		</div>
+
+<div class="container">
+<div style="height: 4em">			
+	
+<!-- INCLUDING FOOTER FILE HERE        Do Not Edit                                   -->
+<script language="JavaScript" src="<?=$public_path?>/javascripts/footers/li_footer.js" type="text/javascript"></script> 
+<!-- END FOOTER HEADER FILE    -->
+</div>
 </body>
 </html>
