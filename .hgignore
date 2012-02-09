@@ -1,0 +1,2 @@
+glob:.settings/com.aptana.editor.php.prefs
+.settings/*

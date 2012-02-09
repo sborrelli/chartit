@@ -1,0 +1,1 @@
+<?php$public_path = "http://localhost/stacks";define("DB_PATH", "../db/stackchart.sqlite2.db");?>

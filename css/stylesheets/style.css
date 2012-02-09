@@ -3,10 +3,10 @@ This stylesheet is for the stack chart
 ********************************************************************/
 
 html {margin: 0; padding: 0;}
-body {margin: 0; padding: 0; font-family: verdana, sans-serif; font-size: 80%;
-           background: #ee8 repeat-y url(images/browncol.gif);}
+body {margin: 0; padding: 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 80%;
+           background: #eee repeat-y url(images/browncol.gif);}
             /*** Image is 180px wide, and 20px high ***/
-pre {margin: 0; font-family: verdana, sans-serif; font-size: .9em;}
+pre {margin: 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: .9em;}
 
 a:
 {
@@ -26,28 +26,31 @@ a:visited
 .alignright {margin-top: 0; text-align: right;}
 .small {font-size: .9em;}
 .return {position: absolute; top: 0; right: 0; text-align: right; padding: .5em;}
+.separator{clear: both; height: 5px}
+
+
 /*******************************************************************************
                        Positioning rules
 *******************************************************************************/
 h1 {
 margin: 0;
-border-top: 4px solid #000;
-background-color: #990033;    /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
-border-bottom: 5px solid #000;
+/*border-top: 4px solid #000;*/
+/*background-color: #990033; */   /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
+/*border-bottom: 3px double #000;*/
 }
-h2, h4 {
+h2 {
 font-size: 30px;
 margin: 0;
-color:white;
-border-top: 4px solid #000;
-background-color: #990033;    /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
-border-bottom: 5px solid #000;
+color:black;
+/*border-top: 4px solid #000;*/
+/*background-color: #990033;*/    /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
+/*border-bottom: 3px double #000;*/
 }
 
 h3 {
 color:white;
 font-size: 30px;
-background-color: #990033;    /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
+/*background-color: #990033;  */  /*** The header and footer have backgrounds, to cover the 2-tone body BG  ***/
 margin: 0;
 }
 
@@ -61,4 +64,61 @@ color: blue;
     
     background-color: #DDDDDD
 }
+
+tbody#holland_1st tr:nth-child(even) td, tbody tr.even td {background:#DEE3E4;}
+tbody#holland_2nd tr:nth-child(even) td, tbody tr.even td {background:#B1C4D2;}
+tbody#holland_3rd tr:nth-child(even) td, tbody tr.even td {background:#D19AA3;}
+
+tbody#terrell_1st tr:nth-child(even) td, tbody tr.even td {background:#A8DEEA;}
+tbody#terrell_gnd tr:nth-child(even) td, tbody tr.even td {background:#F7C48F;}
+tbody#terrell_bas tr:nth-child(even) td, tbody tr.even td {background:#DEE48D;}
+
+tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
+
+.acc_head {padding: 8px 0px 8px 20px; background-color: #A0A0A0}
+#call_map {color: #FFFFFF}
+#other_loc {color: #FFFFFF}
+#locClassification {color: #FFFFFF}
+
+
+/*.sub_header {color: #FFFFFF; background-color: #32B7CF}*/
+
+.floor {padding-left: 15px}
+.stacks_separator {height: 5px; clear: both}
+.sub_header {font-size: 13px; color:white; margin-bottom: 2px}
+.td_sub_head {font-weight: bold; text-align: left}
+
+/* overriding jquery ui css */
+/*.ui-widget { font-family: times, Times New Roman, times-roman, georgia, serif; font-size: 1.1em; }*/
+.ui-accordion-header {font-size: 1.2em; color:#ffffff}
+#holland_1st_hd {background-color: #5E6B72; color: #FFFFFF}
+#holland_2nd_hd {background-color: #255981; color: #FFFFFF}
+#holland_3rd_hd {background-color: #981D32; color: #FFFFFF}
+#terrell_1st_hd {background-color: #32B7CF; color: #FFFFFF}
+#terrell_gnd_hd {background-color: #ED7B24; color: #FFFFFF}
+#terrell_bas_hd {background-color: #B5C034; color: #FFFFFF}
+#terrell_bas_hd_dew {background-color: #B5C034; color: #FFFFFF}
+#holland_3rd_hd_us {background-color: #981D32; color: #FFFFFF}
+#holland_3rd_hd_jack {background-color: #981D32; color: #FFFFFF}
+
+#holland_1st_sh {padding-left: 1em; color: #FFFFFF; background-color: #5E6B72; margin-bottom: 2px}
+#holland_2nd_sh {padding-left: 1em; color: #FFFFFF; background-color: #255981}
+#holland_3rd_sh {padding-left: 1em; color: #FFFFFF; background-color: #981D32}
+#terrell_1st_sh {padding-left: 1em; color: #FFFFFF; background-color: #32B7CF}
+#terrell_gnd_sh {padding-left: 1em; color: #FFFFFF; background-color: #ED7B24}
+#terrell_bas_sh {padding-left: 1em; color: #FFFFFF; background-color: #B5C034}
+
+/*admin screen elements*/
+
+label {
+	float: left;
+	width: 10em;
+	margin-right: 1em;
+	padding: 5px;
+}
+
+input {
+	width: 250px;
+}
+
 
