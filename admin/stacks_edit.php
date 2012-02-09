@@ -319,7 +319,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 				<legend>Buttons</legend>
 				<ul>
 					<li><strong>Save</strong>: Saves the stack into the database.</li>
-					<li><strong>Reset</strong>: Restores the values from the database.</li>
+					<li><strong>Reset</strong>: Restores the previous values when changes are made (without saving).</li>
 				</ul>
 			</fieldset>			
 		</div>
