@@ -16,8 +16,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	<link href="css/stylesheets/li_stylesheet.css" rel="stylesheet" type="text/css" />
 	<link href="css/stylesheets/maps.css" rel="stylesheet" type="text/css" />
 	<title>Holland &amp; Terrell Stack Chart</title>
-	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header1.js"></script> 
-	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header2.js"></script>	
+	<!-- -->
+	<link rel="shortcut icon" href="http://wsu.edu/favicon.ICO" />	
+	<link href="http://www.wsu.edu/navigatewsu/gen2/print.css" rel="stylesheet" type="text/css" media="print"/>
+	<link href="http://www.wsulibs.wsu.edu/css/local.New4.inner-09.css" rel="stylesheet" type="text/css" />
+	<!-- -->	
 	<script src="javascripts/jquery/jquery-1.5.min.js"></script>
 	<script src="javascripts/jqueryui/jquery-ui.min.js"></script>
 	<?
@@ -57,17 +60,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 		</script>
 </head>
 <body>
-<!-- Header Script -->
-<script type="text/javascript" src="javascript/header.js"></script>
+<div id="main">
 <div id="pup" style="position: absolute; visibility: hidden; top: -1600px; left: 1px; width: 0pt;"></div>
-<p align="right">
-<a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/basement.html">Basement</a>
-<a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/ground.html">Ground</a>
-<a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/1st.html">1st</a>
-<a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/2nd.html">2nd</a>
-<a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/3rd.html">3rd</a>
-<a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/Default.html">Map</a>
-</p>
 	
 <canvas id="planCanvas" width="575" height="451">
 <script type="text/javascript">
@@ -78,8 +72,6 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 <div class="subclass">
 	Subclass info goes here
 </div>	
-<!-- INCLUDE FOOTER FILE HERE        Do Not Edit                                   -->
-<script language="JavaScript" src="javascripts/footers/li_footer.js" type="text/javascript"></script>
-<!-- END FOOTER HEADER FILE   -->
+</div>
 </body>
 </html>
