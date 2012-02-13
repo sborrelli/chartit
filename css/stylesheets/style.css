@@ -3,26 +3,28 @@ This stylesheet is for the stack chart
 ********************************************************************/
 
 html {margin: 0; padding: 0;}
-body {margin: 0; padding: 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 80%;
+body {margin: 0; padding: 0; font-family: "Lucida Grande","Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif; font-size: 80%;
            background: #eee repeat-y url(images/browncol.gif);}
+	   
             /*** Image is 180px wide, and 20px high ***/
 pre {margin: 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: .9em;}
 
 a:
 {
 	text-decoration: underline;
-	color: blue;
+	color: 003c69;
 }
 a:hover
 {
-	color:#9933FF;
-	text-decoration: underline;
+	color:#981e32;
+	text-decoration: none;
 }
 a:visited
 {
-	
-	color: blue;
+	color:#5e6a71;
+	text-decoration:underline;
 }
+
 .alignright {margin-top: 0; text-align: right;}
 .small {font-size: .9em;}
 .return {position: absolute; top: 0; right: 0; text-align: right; padding: .5em;}
@@ -80,6 +82,8 @@ tbody.call_map tr:nth-child(even) td, tbody tr.even td {background:#E7E7E8;}
 #other_loc {color: #FFFFFF}
 #locClassification {color: #FFFFFF}
 
+#main {width:760px;float:left;padding-left:22px;background-color:#fff;padding-right:22px;}
+#main,#secondary,#additional {padding-top:20px;float:left;font-size:0.75em;background-color:#fff;}
 
 /*.sub_header {color: #FFFFFF; background-color: #32B7CF}*/
 

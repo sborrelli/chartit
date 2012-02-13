@@ -67,11 +67,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	   $("#hollandDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
 	      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
 	      initShow : "div.shown", showSpeed: 200, hideSpeed: 400
-	    }); 
-	   /*$("#mapDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
-	      head: "h2, span", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
-	      initShow : "div.shown", showSpeed: 200, hideSpeed: 400
-	    }); */
+	    }); 	   
 	    $("#otherDiv").n_accordion({obj: "div", wrapper: "div", el: ".h", 
 	      head: "h2, h3", next: "div", showMethod: "slideFadeDown", hideMethod: "slideFadeUp",
 	      initShow : "div.shown", showSpeed: 200, hideSpeed: 400
@@ -120,200 +116,129 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 
 <? if(!is_mobile()){ //Only use headers if client is not mobile ?>
 	<!-- This is the Common Header -->
-	<!-- header script includes </head> and <body> tags -->
-	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header1.js"></script>
-	<script type="text/javascript" src="http://www.wsulibs.wsu.edu/Header/Header2.js"></script>
+	<link rel="shortcut icon" href="http://wsu.edu/favicon.ICO" />	
+	<link href="http://www.wsu.edu/navigatewsu/gen2/print.css" rel="stylesheet" type="text/css" media="print"/>
+	<link href="http://www.wsulibs.wsu.edu/css/local.New4.inner-09.css" rel="stylesheet" type="text/css" />	
 	<!-- END HEADER -->
 <? } else {	//include some mobile specific styling ?>
 	<link href="css/stylesheets/mobile.css" rel="stylesheet" type="text/css" />
-	</head>
-	<body>
+	
 <? } //Notice that the non-mobile version included </head> and <body> for us?>        	
+</head>
+<body>
+<div id="main">
+	<h1 align="center">Holland & Terrell Stack Chart</h1>
+	<hr />
 
-<h1 align="center">Holland & Terrell Stack Chart</h1>
-<hr />
+	<div class="container <? if (is_mobile()) print "mobile_con"; else print "showgrid"; ?>">	
 
-<div class="container <? if (is_mobile()) print "mobile_con"; else print "showgrid"; ?>">	
-
-	<?
-	if (!($db = sqlite_open("db/stackchart.sqlite2.db"))) {
-		echo "<h2> Database Error </h2>";
-		die();
-	}
-	$page_size = 10;
-	?>
-	<div id="mainDiv">			
-		<div class="<? if (is_mobile()) print "mobile_half"; else print "span-9"; ?>">
-			<h1 align="center" >Terrell Library </h1>
-			<br>
-			<div id="terrelDiv">				
-				<h2><a href="#" id="terrell_1st_hd" class="acc_head" >1st Floor<br>Call Numbers: A - DC</a></h2>
-				<div class="floor">	
-					<? displayStacks($db, $page_size, 1, "terrell_1st");?>
+		<?
+		if (!($db = sqlite_open("db/stackchart.sqlite2.db"))) {
+			echo "<h2> Database Error </h2>";
+			die();
+		}
+		$page_size = 10;
+		?>
+		<div id="mainDiv">			
+			<div class="<? if (is_mobile()) print "mobile_half"; else print "span-9"; ?>">
+				<h1 align="center" >Terrell Library </h1>
+				<br>
+				<div id="terrelDiv">				
+					<h2><a href="#" id="terrell_1st_hd" class="acc_head" >1st Floor<br>Call Numbers: A - DC</a></h2>
+					<div class="floor">	
+						<? displayStacks($db, $page_size, 1, "terrell_1st");?>
+					</div>
+					<h2><a href="#" id="terrell_gnd_hd" class="acc_head" >Ground Floor<br>Call Numbers: DD - HB 149 Z9</a></h2>	
+					<div class="floor">
+						<? displayStacks($db, $page_size, 2, "terrell_gnd");?>					
+					</div>			
+					<h2><a href="#" id="terrell_bas_hd" class="acc_head" >Basement<br>Call Numbers: HB 150 - HV 5999</a></h2>
+					<div class="floor">
+						<? displayStacks($db, $page_size, 3, "terrell_bas");?>				
+					</div>
+					<h2><a href="#" id="terrell_bas_hd_dew" class="acc_head" >Basement<br>Dewey Call Numbers: 001 - 999</a></h2>
+					<div class="floor">
+						<? displayStacks($db, $page_size, 4, "terrell_bas");?>			
+					</div>						
+				</div>		
+			</div>
+			
+			<div class="<? if (is_mobile()) print "mobile_half"; else print "span-9"; ?>">
+				<h1 align="center">Holland Library </h1>
+				<br>
+				<div id="hollandDiv">
+					<h2><a href="#" id="holland_1st_hd" class="acc_head">1st Floor<br>Call Numbers: HV 6000 - KZ</a></h2>
+					<div class="floor">
+						<? displayStacks($db, $page_size, 5, "holland_1st");?>				
+					</div>
+					<h2><a href="#" id="holland_2nd_hd" class="acc_head">2nd Floor<br>Call Numbers: L - PS 3299 </a></h2>
+					<div class="floor">
+						<? displayStacks($db, $page_size, 6, "holland_2nd");?>				
+					</div>
+					<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Call Numbers: PS 3302 - Z </a></h2>
+					<div class="floor">
+						<? displayStacks($db, $page_size, 7, "holland_3rd");?>				
+					</div>
+					<h2><a href="#" id="holland_3rd_hd_jack" class="acc_head">3rd Floor - Jackson (State/Int’l) Docs<br>HOLDOC MA 1 - HOLDOC UNY 72 SKJ</a></h2>
+					<div class="floor">
+						<? displayStacks($db, $page_size, 8, "holland_3rd");?>					
+					</div>
+					<h2><a href="#" id="holland_3rd_hd_us" class="acc_head">3rd Floor - US Gov Docs<br>HOLDOC A 1.1/3 - HOLDOC Z999</a></h2>
+					<div class="floor">
+						<? displayStacks($db, $page_size, 9, "holland_3rd");?>				
+					</div>
 				</div>
-				<h2><a href="#" id="terrell_gnd_hd" class="acc_head" >Ground Floor<br>Call Numbers: DD - HB 149 Z9</a></h2>	
-				<div class="floor">
-					<? displayStacks($db, $page_size, 2, "terrell_gnd");?>					
-				</div>			
-				<h2><a href="#" id="terrell_bas_hd" class="acc_head" >Basement<br>Call Numbers: HB 150 - HV 5999</a></h2>
-				<div class="floor">
-					<? displayStacks($db, $page_size, 3, "terrell_bas");?>				
-				</div>
-				<h2><a href="#" id="terrell_bas_hd_dew" class="acc_head" >Basement<br>Dewey Call Numbers: 001 - 999</a></h2>
-				<div class="floor">
-					<? displayStacks($db, $page_size, 4, "terrell_bas");?>			
-				</div>						
-			</div>		
+			</div>	
+		</div>
+		<div class="separator"></div>
+
+		<div class="<? if (is_mobile()) print "mobile_full"; else print "span-18 last"; ?>">
+			<div id="otherDiv">
+				<h2><a href="#" id="other_loc" class="acc_head" >Other Holland and Terrell Locations</a></h2>
+					<div>				
+						<div>				  
+						  <table border="1" cellpadding=2 cellspacing="0">
+							<tr>
+							  <td colspan="2"><div align="center"><strong>Terrell Library</strong></div>
+							  <td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
+							  </td>
+							</tr>
+							<tr>
+							  <td width="317">Reference</td>
+							  <td width="122">1st Floor</td>
+							  <td width="317"> Cougar Copies</td>
+							  <td width="122">1st Floor</td>
+							</tr>
+							<tr>
+							  <td>Current Journals/Newspapers</td>
+							  <td>Ground Floor</td>
+							  <td width="317"> Microforms</td>
+							  <td width="122">1st Floor</td>
+							</tr>
+							<tr>
+							  <td>MASC <font size="-3">(Manuscripts, Archives, and Special Collections)</font></td>
+							  <td>Ground Floor</td>
+							  <td width="317">Map Room</td>
+							  <td width="122">1st Floor</td>
+							</tr>
+							<tr>
+							  <td>Media Materials/Reserves</td>
+							  <td>Ground Floor</td>
+							  <td width="317"> Oversize</td>
+							  <td width="122">3rd Floor</td>
+							</tr>
+							</table>
+						</div>
+					</div>
+			</div>
 		</div>
 		
-		<div class="<? if (is_mobile()) print "mobile_half"; else print "span-9"; ?>">
-			<h1 align="center">Holland Library </h1>
-			<br>
-			<div id="hollandDiv">
-				<h2><a href="#" id="holland_1st_hd" class="acc_head">1st Floor<br>Call Numbers: HV 6000 - KZ</a></h2>
-				<div class="floor">
-					<? displayStacks($db, $page_size, 5, "holland_1st");?>				
-				</div>
-				<h2><a href="#" id="holland_2nd_hd" class="acc_head">2nd Floor<br>Call Numbers: L - PS 3299 </a></h2>
-				<div class="floor">
-					<? displayStacks($db, $page_size, 6, "holland_2nd");?>				
-				</div>
-				<h2><a href="#" id="holland_3rd_hd" class="acc_head">3rd Floor<br>Call Numbers: PS 3302 - Z </a></h2>
-				<div class="floor">
-					<? displayStacks($db, $page_size, 7, "holland_3rd");?>				
-				</div>
-				<h2><a href="#" id="holland_3rd_hd_jack" class="acc_head">3rd Floor - Jackson (State/Int’l) Docs<br>HOLDOC MA 1 - HOLDOC UNY 72 SKJ</a></h2>
-				<div class="floor">
-					<? displayStacks($db, $page_size, 8, "holland_3rd");?>					
-				</div>
-				<h2><a href="#" id="holland_3rd_hd_us" class="acc_head">3rd Floor - US Gov Docs<br>HOLDOC A 1.1/3 - HOLDOC Z999</a></h2>
-				<div class="floor">
-					<? displayStacks($db, $page_size, 9, "holland_3rd");?>				
-				</div>
-			</div>
-		</div>	
-	</div>
-	<div class="separator"></div>
+		<div class="separator"></div>
+			
 
-	<div class="<? if (is_mobile()) print "mobile_full"; else print "span-18 last"; ?>">
-		<div id="otherDiv">
-			<h2><a href="#" id="other_loc" class="acc_head" >Other Holland and Terrell Locations</a></h2>
-				<div>				
-					<div>				  
-					  <table border="1" cellpadding=2 cellspacing="0">
-				        <tr>
-				          <td colspan="2"><div align="center"><strong>Terrell Library</strong></div>
-				          <td colspan="2"><div align="center"><strong>Holland Library</strong></div></td>
-				          </td>
-				        </tr>
-				        <tr>
-				          <td width="317">Reference</td>
-				          <td width="122">1st Floor</td>
-				          <td width="317"> Cougar Copies</td>
-						  <td width="122">1st Floor</td>
-				        </tr>
-				        <tr>
-				          <td>Current Journals/Newspapers</td>
-				          <td>Ground Floor</td>
-				          <td width="317"> Microforms</td>
-						  <td width="122">1st Floor</td>
-				        </tr>
-				        <tr>
-				          <td>MASC <font size="-3">(Manuscripts, Archives, and Special Collections)</font></td>
-				          <td>Ground Floor</td>
-				          <td width="317">Map Room</td>
-						  <td width="122">1st Floor</td>
-				        </tr>
-				        <tr>
-				          <td>Media Materials/Reserves</td>
-				          <td>Ground Floor</td>
-				          <td width="317"> Oversize</td>
-						  <td width="122">3rd Floor</td>
-				        </tr>
-			      		</table>
-			      	</div>
-				</div>
-		</div>
-	</div>
-	
-	<div class="separator"></div>
-
-	<div class="<? if (is_mobile()) print "mobile_full"; else print "span-18 last"; ?>">
-		<div id="locClassDiv">
-			<h2><a href="#" id="locClassification" class="acc_head" >Browse by Library of Congress Classification</a></h2>
-				<div>				
-					<p>Welcome to the Holland and Terrell Libraries. This resource has been developed to assist you in 
-						locating materials throughout the buildings by providing the locations of resources 
-						by the library of congress classification system. For example if you're researching information about the sculpture "Hermes" by 
-						Praxiteles you can locate the general area that these resources may be in by 
-						clicking "N" for Visual arts and then "Subclass NB Sculpture" and you will see 
-						the location of the stacks on a map of the buildings which contain these resources.</p>
-						<p>
-						
-						Click on a letter to see which building and floor a class/subclass is on. </p>
-					<br />
-		            <table width="100%" border="0">
-		              <tr>
-		                <td width="44%"><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/A.html">A - General Works</a></td>
-		                <td width="32%"><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/J.html">J - Political Science</a></td>
-		                <td width="24%"><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/R.html">R - Medicine</a></td>
-		              </tr>
-		              <tr>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/B.html">B - Philosophy, Psychology, Religion</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/K.html">K - Law</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/S.html">S - Agriculture</a></td>
-		              </tr>
-		              <tr>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/C.html">C - Auxiliary Sciences of History</a> </td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/L.html">L - Education</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/T.html">T- Technology</a> </td>
-		              </tr>
-		              <tr>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/D.html">D - World History</a> </td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/M.Html">M - Music and Books on Music</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/U.html">U - Military Science</a></td>
-		              </tr>
-		              <tr>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/EF.html">E - History of the Americas</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/N.html">N - Fine Arts</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/W.html">W - WSU</a></td>
-		              </tr>
-		              <tr>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/G.html">G - Geography, Anthropology, Recreation</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/P.html">P - Language and Literature</a></td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/Z.html">Z - Bibliography</a></td>
-		              </tr>
-		              <tr>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/H.html">H - Social Sciences</a> </td>
-		                <td><a href="http://www.wsulibs.wsu.edu/Usered/tutorials/hatmapsstacks/Q.html">Q - Science</a> </td>
-		                <td>&nbsp;</td>
-		              </tr>
-		            </table>
-				</div>
-		</div>
-	</div>
-	
-	<div class="separator"></div>
-
-	<!-- Start of StatCounter Code for Default Guide -->
-	<script type="text/javascript">
-		var sc_project=7577748;
-		var sc_invisible=1;
-		var sc_security="0e357b41";
-	</script>
-	<script type="text/javascript" src="http://www.statcounter.com/counter/counter.js"></script>
-	<noscript>
-		<div class="statcounter">
-			<a title="tumblr hit counter" href="http://statcounter.com/tumblr/"
-				target="_blank"><img class="statcounter" src="http://c.statcounter.com/7577748/0/0e357b41/1/"
-							alt="tumblr hit counter"></a>
-		</div>
-	</noscript>
-	<!-- End of StatCounter Code for Default Guide -->
-
-</div><!-- End container div -->
+	</div><!-- End container div -->
 <!-- INCLUDING FOOTER FILE HERE        Do Not Edit                                   -->
-<script language="JavaScript" src="javascripts/footers/li_footer.js" type="text/javascript"></script> 
+</div><!-- End main div -->
 <!-- END FOOTER HEADER FILE                                               -->
 </body>
 </html>
