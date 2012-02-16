@@ -29,7 +29,7 @@ Files
 
 Admin section
 
-Talk here
+Talk here.
 
 Dependencies
 
