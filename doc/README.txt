@@ -55,5 +55,5 @@ The system uses the following open source components
 - Blueprint CSS
 - SQLite 2
 
-
+These libraries are all included in the project files and in the downloadable bundle. They all retain their original licenses, which allow for redistribution in the way it's done here.
  
